@@ -1,38 +1,16 @@
-import Subtopic from "./Subtopic.model.js";
-import Topic from "./topic.model.js";
-import Url from "./Urls.model.js";
-import Project from "./Project.model.js";
 import User from "./User.model.js";
+import Post from "./Post.model.js";
+import Chat from "./Chat.model.js";
 import { db } from '../config/db.js';
 
-const ProjectSubtopic = db.define('project_subtopic', {});
+const UserChat = db.define('user_chat', {});
 
-// User to Project relation
-User.hasMany(Project,  { foreignKey: 'userId' });
-Project.belongsTo(User, { foreignKey: 'userId' });
+// User to Post relation
+User.hasMany(Post,  { foreignKey: 'userId' });
+Post.belongsTo(User, { foreignKey: 'userId' });
 
-// User to Topic relation
-User.hasMany(Topic,  { foreignKey: 'userId' });
-Topic.belongsTo(User, { foreignKey: 'userId' });
+// User and Chat relation
+User.belongsToMany(Chat, { through: UserChat, foreignKey: {name: 'userId', field: 'user_id'} });
+Chat.belongsToMany(User, { through: UserChat, foreignKey: {name: 'chatId', field: 'chat_id'} });
 
-// User to Subtopic relation
-User.hasMany(Subtopic,  { foreignKey: 'userId' });
-Subtopic.belongsTo(User, { foreignKey: 'userId' });
-
-// Topic and Subtopic relation
-Topic.hasMany(Subtopic,  { foreignKey: 'topicId' });
-Subtopic.belongsTo(Topic, { foreignKey: 'topicId' });
-
-// Project and Subtopic relation
-Project.belongsToMany(Subtopic, { through: ProjectSubtopic,
-foreignKey: {name: 'subtopicId', field: 'subtopic_id'}
-});
-Subtopic.belongsToMany(Project, { through: ProjectSubtopic,
-    foreignKey: {name: 'projectId', field: 'project_id'}
-});
-
-// Subtopic and Url relation
-Subtopic.hasMany(Url,  { foreignKey: 'subtopicId' });
-Url.belongsTo(Subtopic, { foreignKey: 'subtopicId' });
-
-export { Subtopic, Topic, Url, Project, User };
+export { User, Post, Chat };
