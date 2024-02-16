@@ -2,6 +2,6 @@ export default function Home() {
     
 
     return (
-        <div>Only Dogs</div>
+        <div>Only Dog</div>
     );
 }
