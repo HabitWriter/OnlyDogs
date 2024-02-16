@@ -1,15 +1,15 @@
 import { Router } from "express";
-import topicRouter from "./topic.routes.js"
-import subtopicRouter from "./subtopic.routes.js";
-import urlRouter from "./url.routes.js";
+import chatRouter from "./chat.routes.js";
+import postRouter from "./post.routes.js";
+import userRouter from "./user.routes.js";
 
 const router = Router();
 
-router.use('', subtopicRouter);
+router.use('', userRouter);
 
-router.use("/api/topic", topicRouter)
+router.use("/api/post", postRouter)
 
-router.use("/api/url", urlRouter)
+router.use("/api/chat", chatRouter)
 
 
 export default router;
