@@ -1,6 +1,9 @@
 import { Router } from 'express';
-import {User} from '../models/index.js';
+
 import bcrypt from "bcryptjs";
+
+import {User, Post, Chat} from '../models/index.js';
+
 
 const userRouter = Router();
 
@@ -25,6 +28,7 @@ userRouter.post('/api/user', async (req, res) => {
     res.status(500).send("There was an error creating the user.");
   }
 });
+
 
 
 
