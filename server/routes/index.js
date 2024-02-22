@@ -1,18 +1,7 @@
-import { Router } from "express";
-import topicRouter from "./topic.routes.js"
-import subtopicRouter from "./subtopic.routes.js";
-import urlRouter from "./url.routes.js";
-import userRouter from "./user.routes.js";
-
+import { Router } from 'express';
+import userRouter from './user.routes.js';
+import authRouter from './auth.routes.js';
 const router = Router();
-
-router.use('', subtopicRouter);
-
-router.use("/api/topic", topicRouter)
-
-router.use("/api/url", urlRouter)
-
-router.use("/api/users", userRouter)
-
-
+router.use(authRouter)
+router.use(userRouter);
 export default router;

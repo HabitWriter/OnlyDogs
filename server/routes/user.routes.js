@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import {User, Post, Chat} from '../models/index.js';
+import {User} from '../models/index.js';
 import bcrypt from "bcryptjs";
 
 const userRouter = Router();
@@ -9,17 +9,24 @@ userRouter.get('/all', async (req, res) => {
   res.json(allUsers);
 });
 
-userRouter.get('/api/users/:userId', async (req, res) => {
+userRouter.get('/api/user/:userId', async (req, res) => {
   User.findOne({ where: { userId: req.params.userId } }).then(user => res.send({ user }));
 });
 
-userRouter.post('/api/users', async (req, res) => {
-  const { username: username, name: name, email: email, password: password, breed: breed} = req.body;
-  console.log("you are here")
-  bcrypt.hash(password, 8).then(hash => {
-      User.create({ username: username, name: name, email: email, password: hash, breed: breed}).then(user => res.send({ user }))
-  })
+userRouter.post('/api/user', async (req, res) => {
+  console.log(req.body); // Log request body for debugging
+  const { username, name, email, password, breed } = req.body;
+  try {
+    const hashedPassword = await bcrypt.hash(password, 8);
+    const user = await User.create({ username, name, email, password: hashedPassword, breed });
+    res.send({ user });
+  } catch (error) {
+    console.error("Error creating user:", error);
+    res.status(500).send("There was an error creating the user.");
+  }
 });
+
+
 
 // subtopicRouter.post('/new', async (req, res) => {
 //     const {title, topicId} = req.body;

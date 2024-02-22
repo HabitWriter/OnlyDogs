@@ -1,7 +1,10 @@
 export default function Home() {
-    
+
 
     return (
-        <div>Only Dogs</div>
+        <div>
+
+            OnlyDogs
+        </div>
     );
 }

@@ -5,6 +5,8 @@ import ViteExpress from 'vite-express';
 import router from './routes/index.js';
 import bcrypt from 'bcryptjs';
 import User from './models/User.model.js';
+import cors from 'cors';
+
 
 
 const app = express();
@@ -15,7 +17,7 @@ app.use(morgan('dev'));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(session({ secret: 'ssshhhhh', saveUninitialized: true, resave: false }));
-
+app.use(cors());
 app.use(router);
 
 //Login post request
