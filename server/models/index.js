@@ -23,4 +23,4 @@ Chat.belongsToMany(User, { through: UserChat, foreignKey: {name: 'chatId', field
 Chat.hasMany(Message,  { foreignKey: 'chatId' })
 Message.belongsTo(Chat, { foreignKey: 'chatId' });
 
-export { User, Post, Chat, Message };
+export { User, Post, Chat, Message, Comment };
