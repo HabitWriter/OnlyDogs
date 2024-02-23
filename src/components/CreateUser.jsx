@@ -1,7 +1,8 @@
 import { useState } from "react";
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import LogoButton from "./Logo/Logo";
+
 export default function CreateUser() {
     const [usernameValue, setUsernameValue] = useState('');
     const [nameValue, setNameValue] = useState('');
@@ -9,7 +10,9 @@ export default function CreateUser() {
     const [passwordValue, setPasswordValue] = useState('');
     const [breedValue, setBreedValue] = useState('');
     const [avatar, setAvatar] = useState('https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg');
-    // const navigate = useNavigate();
+    const navigate = useNavigate();
+
+    //Validation
     const validateEmail = (email) => {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         return emailRegex.test(email);
@@ -17,6 +20,8 @@ export default function CreateUser() {
     const validatePassword = (password) => {
         return password.length >= 6;
     };
+
+    //Interface upload bar with avatar
     const handleImageChange = (e) => {
         const file = e.target.files[0];
         if (file) {
@@ -27,6 +32,8 @@ export default function CreateUser() {
             reader.readAsDataURL(file);
         }
     };
+
+    //Create User
     const handleCreateUser = async (event) => {
         event.preventDefault();
         if (!validateEmail(emailValue)) {
@@ -52,25 +59,37 @@ export default function CreateUser() {
             console.error("There was an error creating the user:", error.response ? error.response.data : error);
         }
     };
+
+  // Routing to Login Page
+  const navigateToLoginPage = () => {
+    navigate("/");
+  };
+
     return (
         <div>
             <LogoButton/>
             <br></br><br></br><br></br><br></br>
             <div className="w-400 md:w-480 lg:w-638 border bg-white">
                 <br></br>
+                {/* Header 1 Create new Account */}
                 <h1 className="flex justify-center text-black text-5xl font-bold">Create a new account</h1>
                 <br></br>
+                {/* Header 2 Slogan */}
                 <h2 className="flex justify-center text-black text-xs">A place for Paw-sitivity and Fur-ever friends!</h2>
                 <br></br>
+                {/* Divider */}
                 <div className="flex flex-col w-full">
                     <div className="divider before:bg-gray-400 after:bg-gray-400"></div>
                 </div>
+                {/* Form for Creating user */}
                 <form onSubmit={handleCreateUser}>
+                    {/* Avatar */}
                     <div className="avatar flex justify-center">
                         <div className="w-60 rounded-full">
                             <img src={avatar} alt="Avatar" />
                         </div>
                     </div>
+                    {/* File Input */}
                     <div className='flex flex-col items-center'>
                         <input type="file" className="file-input file-input-bordered file-input-warning w-full max-w-xs" onChange={handleImageChange} />
                     </div><br></br>
@@ -99,7 +118,7 @@ export default function CreateUser() {
                 </form>
                 <br></br><br></br>
                 <p className="text-sm font-bold text-black dark:text-black flex justify-center">
-                    Already signed up? &nbsp;  <a href="#" className="font-medium text-blue-800 hover:underline dark:text-primary-500">Sign in</a>
+                    Already signed up? &nbsp;  <a onClick={navigateToLoginPage} href="#" className="font-medium text-blue-800 hover:underline dark:text-primary-500">Sign in</a>
                 </p><br></br><br></br>
             </div>
 

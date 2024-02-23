@@ -1,24 +1,30 @@
 import { useState } from "react";
 import axios from "axios";
 import LogoButton from "./Logo/Logo";
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+
 export default function Login() {
-  // const navigate = useNavigate();
+
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+// Login function
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
       const { data: { user } } = await axios.post('/api/login', { email, password });
-      // navigate(`/mainUser/${user.id}`);
+      navigate(`/home/${user.id}`);
+     console.log(user)
     } catch (error) {
       console.error('Login failed:', error);
       alert('Login failed. Please check your credentials and try again.');
     }
   };
-  // const navigateToCreateUserPage = () => {
-  //   navigate("/createUser");
-  // };
+  // Routing to Create user page
+  const navigateToCreateUserPage = () => {
+    navigate("/createUser");
+  };
   return (
     <div>
       <LogoButton/><br></br><br></br><br></br><br></br>
@@ -61,7 +67,7 @@ export default function Login() {
         </div>
         {/* Create Account button */}
         <div className='flex flex-col items-center'>
-          {/* <button onClick={navigateToCreateUserPage} className="btn btn-warning text-blue-800">Create new account</button> */}
+          <button onClick={navigateToCreateUserPage} className="btn btn-warning text-blue-800">Create new account</button>
         </div><br></br>
       </div>
     </div>
