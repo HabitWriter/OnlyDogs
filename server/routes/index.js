@@ -1,3 +1,4 @@
+
 import { Router } from "express";
 import chatRouter from "./chat.routes.js";
 import postRouter from "./post.routes.js";
@@ -10,6 +11,7 @@ router.use('', userRouter);
 router.use("/api/post", postRouter)
 
 router.use("/api/chat", chatRouter)
+
 
 
 export default router;
