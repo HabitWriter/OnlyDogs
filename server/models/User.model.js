@@ -49,11 +49,11 @@ User.init(
     sequelize: db,
   },
 );
-db.sync()
-  .then(() => {
-    console.log('Database synchronized');
-  })
-  .catch((error) => {
-    console.error('Error synchronizing database:', error);
-  });
+// db.sync()
+//   .then(() => {
+//     console.log('Database synchronized');
+//   })
+//   .catch((error) => {
+//     console.error('Error synchronizing database:', error);
+//   });
 
