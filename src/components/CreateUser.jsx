@@ -1,6 +1,7 @@
 import { useState } from "react";
 // import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import LogoButton from "./Logo/Logo";
 export default function CreateUser() {
     const [usernameValue, setUsernameValue] = useState('');
     const [nameValue, setNameValue] = useState('');
@@ -53,7 +54,7 @@ export default function CreateUser() {
     };
     return (
         <div>
-            {/* <img>OnlyDogs Image</img> */}
+            <LogoButton/>
             <br></br><br></br><br></br><br></br>
             <div className="w-400 md:w-480 lg:w-638 border bg-white">
                 <br></br>
