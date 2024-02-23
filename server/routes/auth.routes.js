@@ -23,6 +23,7 @@ function loginRequired(req, res, next) {
     res.status(401).json({ success: false, message: "Unauthorized" });
   }
 }
+
 authRouter.post('/api/logout', loginRequired, (req, res) => {
   req.session.destroy(err => {
     if (err) {
