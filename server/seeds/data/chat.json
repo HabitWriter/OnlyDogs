@@ -1,15 +1,14 @@
 [
-    {
-      "messages": "bark",
-      "userId": 1
-    },
-    {
-      "title": "woof",
-      "userId": 1
-    },
-    {
-      "title": "Project Gamma",
-      "userId": 2
-    }
-
-  ]
+  {
+    "chatId": 1,
+    "memberIds": [1, 2, 3]
+  },
+  {
+    "chatId": 2,
+    "memberIds": [1, 2]
+  },
+  {
+    "chatId": 3,
+    "memberIds": [2, 3]
+  }
+]

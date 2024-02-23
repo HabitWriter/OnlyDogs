@@ -1,0 +1,23 @@
+[
+  {
+    "commentId": 1,
+    "body": "This is a comment",
+    "userId": 1,
+    "likes": 10,
+    "dislikes": 2
+  },
+  {
+    "commentId": 2,
+    "body": "This is another comment",
+    "userId": 2,
+    "likes": 5,
+    "dislikes": 0
+  },
+  {
+    "commentId": 3,
+    "body": "This is yet another comment",
+    "userId": 3,
+    "likes": 7,
+    "dislikes": 1
+  }
+]

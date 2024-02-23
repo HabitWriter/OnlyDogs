@@ -1,0 +1,17 @@
+[
+  {
+    "messageId": 1,
+    "text": "Bark bark",
+    "userId": 1
+  },
+  {
+    "messageId": 2,
+    "text": "woof woof!",
+    "userId": 2
+  },
+  {
+    "messageId": 3,
+    "text": "Woof woof bark woof. I dare say woof.",
+    "userId": 3
+  }
+]
