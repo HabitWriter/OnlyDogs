@@ -4,7 +4,7 @@ import {User, Post, Chat} from '../models/index.js';
 const chatRouter = Router();
 
 chatRouter.get('/all', async (req, res) => {
-  const allChats = await Chat.findAll({});
+  const allChats = await Chat.findAll({include: User});
   res.json(allChats);
 });
 
