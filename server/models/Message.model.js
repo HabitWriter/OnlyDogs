@@ -2,22 +2,30 @@ import { DataTypes, Model } from "sequelize";
 import util from 'util';
 import { db } from "../config/db.js";
 
-export default class Chat extends Model {
+export default class Message extends Model {
   [util.inspect.custom]() {
     return this.toJSON();
   }
 }
 
-Chat.init(
+Message.init(
   { 
-    chatId: {
+    messageId: {
       type: DataTypes.INTEGER,
       autoIncrement: true,
       primaryKey: true,
     },
+    text: {
+      type: DataTypes.TEXT,
+      allowNull: false,
+    },
+    userId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
   },
   {
-    modelName: 'chat',
+    modelName: 'message',
     sequelize: db,
   },
 );

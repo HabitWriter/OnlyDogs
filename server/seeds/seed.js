@@ -1,12 +1,12 @@
 import lodash from 'lodash';
-import { Subtopic, Topic, Url, Project, User } from '../models/index.js';
+import { Chat, Comment, Message, Post, User } from '../models/index.js';
 import { db } from '../config/db.js';
 
-import topicData from './data/topic.json' assert { type: 'json' };
-import subtopicData from './data/subtopic.json' assert { type: 'json' };
-import projectData from './data/project.json' assert { type: 'json' };
-import urlData from './data/url.json' assert { type: 'json' };
-import projectSubtopicData from './data/projectSubtopic.json' assert { type: 'json' };
+import chatData from './data/chat.json' assert { type: 'json' };
+import commentData from './data/comment.json' assert { type: 'json' };
+import messageData from './data/message.json' assert { type: 'json' };
+import postData from './data/post.json' assert { type: 'json' };
+import userData from './data/user.json' assert { type: 'json' };
 
 console.log('Syncing database...');
 await db.sync({ force: true });
@@ -14,157 +14,96 @@ await db.sync({ force: true });
 console.log('Seeding database...');
 
 // Create Seed Users
-const usersToCreate = [];
-for (let i = 0; i < 1; i++) {
-  const username = `user${i}@test.com`;
-  usersToCreate.push(User.create({ username: username, password: 'test' }));
-}
 
-const usersInDB = await Promise.all(usersToCreate);
+const userToCreate = [];
+userData.forEach((userObject) => {
+    userToCreate.push(User.create(userObject))
+})
 
-// console.log(usersInDB);
+const userInDB = await Promise.all(userToCreate);
 
-// Create Seed Topics
+// console.log(userInDB);
 
-const topicInDB = await Promise.all(
-    topicData.map((topic) => {
-        const { title } = topic;
-        const userId = usersInDB[0].userId
+// Create Seed Posts
+const postToCreate = [];
+postData.forEach((postObject) => {
+    
+    postToCreate.push(Post.create(postObject))
+})
 
-        const newTopic = Topic.create({
-            title : title,
-            userId : userId
-        })
+const postInDB = await Promise.all(postToCreate);
 
-        return newTopic
-    })
-);
+// console.log(postInDB);
 
-// console.log(topicInDB);
-
-// Create Seed Projects
-
-const projectInDB = await Promise.all(
-    projectData.map((project) => {
-        const { title } = project;
-        const userId = usersInDB[0].userId
-
-        const newProject = Project.create({
-            title : title,
-            userId : userId
-        })
-
-        return newProject
-    })
-);
-
-// console.log(projectInDB);
-
-// console.log(topicInDB);
-
-// Create Seed Subtopics
-
-const subtopicInDB = await Promise.all(
-    subtopicData.map((subtopic) => {
-        const { title, timeAccessed, codeExample, notes } = subtopic;
-        const userId = usersInDB[0].userId
-        
-        
-        
-
-        const newSubtopic = Subtopic.create({
-            title : title,
-            userId : userId,
-            timeAccessed : timeAccessed,
-            codeExample : codeExample,
-            notes: notes 
-        })
-
-        return newSubtopic
-    })
-);
-
-const subtopics = await Subtopic.findAll()
-const html = await Topic.findByPk(1)
-
-const addTopicId = async (subtopic) => {
-    await html.addSubtopic(subtopic);
-  };
+  console.log("_____________________________HERE______________________");
   
-  for (const subtopic of subtopics) {
-    await addTopicId(subtopic);
-  }
+//   console.log(users);
 
-// console.log(subtopicInDB);
-
-// Create Seed URLS
-let Div = await Subtopic.findByPk(1)
-
-
-const urlInDB = await Promise.all(
-    urlData.map( async (urlObj) => {
-        const { url, text } = urlObj;
-        const subtopicId = subtopicInDB[0].subtopicId
-        
-        const newUrl = await Url.create({
-            url : url,
-            text : text,
-            subtopicId: 1,
-        })
-        
-        await Div.addUrl(newUrl);
-        
-        newUrl.subtopicId = 1
-        
-        return newUrl
-    })
-    );
+// Create Seed Comments
+const commentToCreate = [];
+commentData.forEach((commentObject) => {
     
-    Div = await Subtopic.findByPk(1, { include: [Url] }); // Fetch Div again, including associated Urls
-    console.log(Div.urls);
+    commentToCreate.push(Comment.create(commentObject))
+})
+
+const commentInDB = await Promise.all(commentToCreate);
+
+// console.log(commentInDB);
+
+
+// Create Seed Chats
+const chatToCreate = [];
+chatData.forEach((chatObject) => {
     
-    // console.log(urlInDB);
+    chatToCreate.push(Chat.create(chatObject))
+})
 
-// Create Seed Middle Table
+const chatInDB = await Promise.all(chatToCreate);
 
-// const moviesInDB = await Promise.all(
-//   movieData.map((movie) => {
-//     const releaseDate = new Date(Date.parse(movie.releaseDate));
-//     const { title, overview, posterPath } = movie;
-
-//     const newMovie = Movie.create({
-//       title: title,
-//       overview: overview,
-//       posterPath: posterPath,
-//       releaseDate: releaseDate,
-//     });
-
-//     return newMovie;
-//   }),
-// );
-
-// console.log(moviesInDB);
+// console.log(chatInDB);
 
 
-// const ratingsInDB = await Promise.all(
-//   usersInDB.flatMap((user) => {
-//     // Get ten random movies
-//     const randomMovies = lodash.sampleSize(moviesInDB, 10);
+// Create Seed Messages
+const messageToCreate = [];
+messageData.forEach((messageObject) => {
+    
+    messageToCreate.push(Message.create(messageObject))
+})
 
-//     // Create a rating for each movie
-//     const movieRatings = randomMovies.map((movie) => {
-//       return Rating.create({
-//         score: lodash.random(1, 5),
-//         userId: user.userId,
-//         movieId: movie.movieId,
-//       });
-//     });
+const messageInDB = await Promise.all(messageToCreate);
 
-//     return movieRatings;
-//   }),
-// );
+// console.log(messageInDB);
 
-// console.log(ratingsInDB);
+// Add user and Chat Relations
+
+const user1 = await User.findByPk(1);
+const user2 = await User.findByPk(2);
+const user3 = await User.findByPk(3);
+
+const chat1 = await Chat.findByPk(1);
+const chat2 = await Chat.findByPk(2);
+const chat3 = await Chat.findByPk(3);
+
+await user1.addChat(chat1);
+await user1.addChat(chat2);
+
+await user2.addChat(chat1);
+await user2.addChat(chat2);
+await user2.addChat(chat3);
+
+await user3.addChat(chat1);
+await user3.addChat(chat3);
+
+const chats = await Chat.findAll({
+    include: Message
+  });
+
+  const users = await User.findAll({
+    include: Chat
+  });
+
+// console.log(chats);
+// console.log(users);
 
 await db.close();
 console.log('Finished seeding database!');

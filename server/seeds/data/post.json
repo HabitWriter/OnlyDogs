@@ -1,0 +1,26 @@
+[
+  {
+    "postId": 1,
+    "body": "bark bark, am sad",
+    "image": null,
+    "likes": 10,
+    "dislikes": 2,
+    "userId" : 1
+  },
+  {
+    "postId": 2,
+    "body": "am be doin a confuse, want treat.",
+    "image": null,
+    "likes": 5,
+    "dislikes": 0,
+    "userId" : 1
+  },
+  {
+    "postId": 3,
+    "body": "bark woof",
+    "image": null,
+    "likes": 7,
+    "dislikes": 1,
+    "userId" : 2
+  }
+]

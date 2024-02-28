@@ -1,0 +1,33 @@
+[
+  {
+    "userId": 1,
+    "email": "user1@example.com",
+    "password": "password1",
+    "username": "user1",
+    "profilePic": "profile1.jpg",
+    "name": "Bark Ruffalo",
+    "friendsList": [2, 3],
+    "breed": "breed1"
+  },
+  {
+    "userId": 2,
+    "email": "user2@example.com",
+    "password": "password2",
+    "username": "user2",
+    "profilePic": "profile2.jpg",
+    "name": "Mutt Damon",
+    "friendsList": [1, 3],
+    "breed": "breed2"
+  },
+  {
+    "userId": 3,
+    "email": "user3@example.com",
+    "password": "password3",
+    "username": "user3",
+    "profilePic": "profile3.jpg",
+    "name": "Chewbarka",
+    "friendsList": [1, 2],
+    "breed": "breed3"
+  }
+]
+  
