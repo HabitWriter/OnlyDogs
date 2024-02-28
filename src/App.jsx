@@ -1,6 +1,6 @@
 import { useAtomValue } from "jotai";
 
-import Home from "./components/Home";
+import ChatPage from "./ChatPage";
 
 
 
@@ -10,7 +10,7 @@ function App() {
 
     return (
         <>
-            <Home/>
+            <ChatPage/>
 
            
         </>
