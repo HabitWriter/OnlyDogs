@@ -9,8 +9,7 @@ authRouter.post('/api/login', async (req, res) => {
   const isMatch = await bcrypt.compare(password, user.password);
   if (user && isMatch) {
     req.session.userId = user.id;
-    res.json({ user: { id: user.userId } });
-    res.json({ success: true });
+    res.json({ success: true, user: { id: user.id } });
   } else {
     res.json({ success: false });
   }
@@ -23,6 +22,7 @@ function loginRequired(req, res, next) {
     res.status(401).json({ success: false, message: "Unauthorized" });
   }
 }
+
 authRouter.post('/api/logout', loginRequired, (req, res) => {
   req.session.destroy(err => {
     if (err) {
