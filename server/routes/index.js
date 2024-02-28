@@ -13,9 +13,7 @@ router.use("/api/post", postRouter)
 
 router.use("/api/chat", chatRouter)
 
-router.use("/api/login", authRouter)
-
-router.use("/api/logout", authRouter)
+router.use(authRouter)
 
 
 

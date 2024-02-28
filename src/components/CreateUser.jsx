@@ -54,6 +54,7 @@ export default function CreateUser() {
             });
             // Handle success response
             console.log("User created successfully", res.data);
+            navigate("/");
         } catch (error) {
             // Log error message
             console.error("There was an error creating the user:", error.response ? error.response.data : error);
