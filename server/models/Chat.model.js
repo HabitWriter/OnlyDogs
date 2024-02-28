@@ -15,10 +15,6 @@ Chat.init(
       autoIncrement: true,
       primaryKey: true,
     },
-    memberIds: {
-      type: DataTypes.ARRAY(DataTypes.INTEGER),
-      allowNull: false,
-    },
   },
   {
     modelName: 'chat',
