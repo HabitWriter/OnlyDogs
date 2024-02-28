@@ -1,6 +1,7 @@
 import lodash from 'lodash';
 import { Chat, Comment, Message, Post, User } from '../models/index.js';
 import { db } from '../config/db.js';
+import bcrypt from "bcrypt";
 
 import chatData from './data/chat.json' assert { type: 'json' };
 import commentData from './data/comment.json' assert { type: 'json' };
@@ -16,13 +17,12 @@ console.log('Seeding database...');
 // Create Seed Users
 
 const userToCreate = [];
-userData.forEach((userObject) => {
-    userToCreate.push(User.create(userObject))
+userData.forEach( async (userObject) => {
+
+  userToCreate.push( await User.create(userObject))
 })
 
-const userInDB = await Promise.all(userToCreate);
 
-// console.log(userInDB);
 
 // Create Seed Posts
 const postToCreate = [];
@@ -35,7 +35,7 @@ const postInDB = await Promise.all(postToCreate);
 
 // console.log(postInDB);
 
-  console.log("_____________________________HERE______________________");
+  // console.log("_____________________________HERE______________________");
   
 //   console.log(users);
 
@@ -104,6 +104,22 @@ const chats = await Chat.findAll({
 
 // console.log(chats);
 // console.log(users);
+
+async function hashPassword(user) {
+
+  const rawPassword = user.password
+  console.log(rawPassword);
+  const hashedPassword = await bcrypt.hash(rawPassword, 8);
+  console.log(hashedPassword)
+
+  user.password = hashedPassword
+  await user.save();
+
+}
+
+await hashPassword(user1)
+await hashPassword(user2)
+await hashPassword(user3)
 
 await db.close();
 console.log('Finished seeding database!');
