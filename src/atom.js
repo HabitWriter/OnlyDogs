@@ -1,10 +1,11 @@
 import { atom } from "jotai";
 import axios from "axios";
 
-// Subtopic Atoms
-const subtopicArrayAtom = atom(
+// Message Atoms
+const messageArrayAtom = atom(
   async get => {
-    const res = await axios.get("http://localhost:4090/all");
+    const res = await axios.get("http://localhost:4090/message/all");
+    console.log(res.data);
     return res.data;
   }
 );

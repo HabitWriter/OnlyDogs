@@ -8,6 +8,7 @@ import Home from './components/Home.jsx'
 import Login from './components/Login.jsx'
 import Dogtcha from './components/Dogtcha.jsx'
 import NotADog from './components/NotADog.jsx'
+import FeedPage from './Pages/FeedPage.jsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -36,6 +37,10 @@ const router = createBrowserRouter(
       <Route
         path="/notADog"
         element={< NotADog />}
+      />
+      <Route
+        path="/feed"
+        element={< FeedPage />}
       />
     </Route>,
   ),

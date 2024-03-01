@@ -73,7 +73,7 @@ export default function CreateUser() {
 
     return (
         <div>
-            <div className="flex mb-10 bg-primary-900">
+            <div className="flex mb-10">
                 <LogoButton />
             </div>
 
