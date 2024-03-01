@@ -21,9 +21,9 @@ export default function Login() {
       alert('Login failed. Please check your credentials and try again.');
     }
   };
-  // Routing to Create user page
-  const navigateToCreateUserPage = () => {
-    navigate("/createUser");
+  // Routing to Dogtcha page
+  const navigateToDogtchaPage = () => {
+    navigate("/dogtcha");
   };
   return (
     <div>
@@ -67,7 +67,7 @@ export default function Login() {
         </div>
         {/* Create Account button */}
         <div className='flex flex-col items-center'>
-          <button onClick={navigateToCreateUserPage} className="btn btn-warning text-blue-800">Create new account</button>
+          <button onClick={navigateToDogtchaPage} className="btn btn-warning text-blue-800">Create new account</button>
         </div><br></br>
       </div>
     </div>
