@@ -1,15 +1,16 @@
 import { atom } from "jotai";
 import axios from "axios";
 
-// Subtopic Atoms
-const subtopicArrayAtom = atom(
+// Message Atoms
+export const messageArrayAtom = atom(
   async get => {
-    const res = await axios.get("http://localhost:4090/all");
+    const res = await axios.get("http://localhost:4090/api/message/all");
+    console.log(res.data);
     return res.data;
   }
 );
 
-const subtopicArrayOrderedAtom = atom(async (get) => {
+const messageArrayOrderedAtom = atom(async (get) => {
   const subtopicArray = await get(subtopicArrayAtom);
   return subtopicArray.sort((a, b) => new Date(b.timeAccessed) - new Date(a.timeAccessed));
 });
