@@ -2,6 +2,8 @@ export default function BottomNav() {
     return (
         <div>
             <div className="btm-nav">
+                
+                {/* Settings Button */}
                 <button>
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -21,7 +23,7 @@ export default function BottomNav() {
                         />
                     </svg>
                 </button>
-
+                {/* Profile Button */}
                 <button>
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -65,7 +67,7 @@ export default function BottomNav() {
                         />
                     </svg>
                 </button>
-
+                {/* Feed Button */}
                 <button  className="active">
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -95,7 +97,7 @@ export default function BottomNav() {
                         </g>
                     </svg>
                 </button>
-
+                {/* Chat Button */}
                 <button>
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -139,7 +141,7 @@ export default function BottomNav() {
                         </g>
                     </svg>
                 </button>
-
+                {/* Friends Button */}
                 <button>
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
