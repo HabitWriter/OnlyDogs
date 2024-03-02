@@ -6,7 +6,7 @@ import UploadImageButton from "./buttons/UploadImageButton";
 export default function CreateNewPost() {
     return (
         
-            <div className="card w-[70%] bg-base-100 m-2 shadow-xl">
+            <div className="card w-[90%] md:w-[70%] bg-base-100 m-2 shadow-xl">
                 <div className="card-body items-center">
                     <div className="flex items-center w-full">
                         <img
