@@ -6,6 +6,7 @@ import { Route, RouterProvider, createRoutesFromElements, createBrowserRouter } 
 import CreateUser from './components/CreateUser.jsx'
 import Home from './Pages/Home.jsx'
 import Login from './Pages/Login.jsx'
+import ChatPage from './ChatPage.jsx'
 import Dogtcha from './Pages/Dogtcha.jsx'
 import NotADog from './Pages/NotADog.jsx'
 import FeedPage from './Pages/FeedPage.jsx'
@@ -34,6 +35,10 @@ const router = createBrowserRouter(
         path="/home/:userId"
         element={< Home />}
       />
+      {/*Chat Page */}
+      <Route
+        path="/chat/"
+        element={< ChatPage />}
       {/*Not a dog Page */}
       <Route
         path="/notADog"
