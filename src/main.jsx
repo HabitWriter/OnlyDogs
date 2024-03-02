@@ -9,6 +9,7 @@ import Login from './Pages/Login.jsx'
 import Dogtcha from './Pages/Dogtcha.jsx'
 import NotADog from './Pages/NotADog.jsx'
 import FeedPage from './Pages/FeedPage.jsx'
+import ProfilePage from './Pages/ProfilePage.jsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -41,6 +42,10 @@ const router = createBrowserRouter(
       <Route
         path="/feed"
         element={< FeedPage />}
+      />
+      <Route
+        path="/profile"
+        element={< ProfilePage />}
       />
     </Route>,
   ),

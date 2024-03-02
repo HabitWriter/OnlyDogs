@@ -3,7 +3,7 @@ import Post from "../components/Post";
 import CreateNewPost from "../components/CreateNewPost";
 import TopNav from "../components/TopLogoNav";
 
-export default function FeedPage() {
+export default function ProfilePage() {
     return (
         <div>
             <TopNav/>
@@ -13,7 +13,7 @@ export default function FeedPage() {
                 <CreateNewPost />
                 <Post />
             </div>
-            <BottomNav selected={3}/>
+            <BottomNav selected={2}/>
         </div>
     );
 }

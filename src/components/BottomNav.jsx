@@ -1,10 +1,47 @@
-export default function BottomNav() {
+import { useNavigate } from "react-router-dom"
+
+
+export default function BottomNav({selected}) {
+    
+    const navigate = useNavigate();    
+    
+    let settingsClassName = ""
+    let profileClassName = ""
+    let feedClassName = ""
+    let chatClassName = ""
+    let friendsClassName = ""
+
+
+    function highlightSelected(selected) {
+        switch(selected) {
+            case 1:
+                settingsClassName = "active"
+                break
+            case 2:
+                profileClassName = "active"
+                break
+            case 3:
+                feedClassName = "active"
+                break
+            case 4:
+                chatClassName = "active"
+                break
+            case 5:
+                friendsClassName = "active"
+                break
+
+        }
+    }
+
+    highlightSelected(selected)
+    
     return (
+        
         <div>
             <div className="btm-nav">
                 
                 {/* Settings Button */}
-                <button>
+                <button className={settingsClassName}>
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -24,7 +61,7 @@ export default function BottomNav() {
                     </svg>
                 </button>
                 {/* Profile Button */}
-                <button>
+                <button className={profileClassName} onClick={() => navigate('/profile')}>
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -68,7 +105,7 @@ export default function BottomNav() {
                     </svg>
                 </button>
                 {/* Feed Button */}
-                <button  className="active">
+                <button  className={feedClassName} onClick={() => navigate('/feed')}>
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -98,7 +135,7 @@ export default function BottomNav() {
                     </svg>
                 </button>
                 {/* Chat Button */}
-                <button>
+                <button className={chatClassName}>
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         xmlnsXlink="http://www.w3.org/1999/xlink"
@@ -142,7 +179,7 @@ export default function BottomNav() {
                     </svg>
                 </button>
                 {/* Friends Button */}
-                <button>
+                <button className={friendsClassName}>
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         xmlns:xlink="http://www.w3.org/1999/xlink"
