@@ -1,9 +1,11 @@
-import LikeButton from "../components/buttons/LikeButton";
+import LikeButton from "./buttons/LikeButton";
 import PostComment from "./PostComment";
 import CommentButton from "./buttons/CommentButton";
+import UploadImageButton from "./buttons/UploadImageButton";
 
-export default function Post() {
+export default function CreateNewPost() {
     return (
+        
             <div className="card w-[70%] bg-base-100 m-2 shadow-xl">
                 <div className="card-body items-center">
                     <div className="flex items-center w-full">
@@ -12,16 +14,14 @@ export default function Post() {
                             src="src\components\Dog\dog1.jpg"
                             alt=""
                         />
-                        <h2>Chewbarka</h2>
+                        <h2 className="card-title">Chewbarka</h2>
                     </div>
-                    <p className="card-title ml-6 mr-2">
-                        If a dog chews shoes whose shoes does he choose?
-                    </p>
-                    <div className="flex w-full pl-2 items-center">
-                        <LikeButton />
-                        <CommentButton />
+                  
+                    <textarea className="textarea w-full textarea-bordered resize-none" placeholder="Am be wanting to bark?"></textarea>
+                    <div className="flex justify-end w-full">
+                    <UploadImageButton/>
+                    <button className="w-24 ml-2 btn btn-primary">Post</button>
                     </div>
-                    <PostComment/>
                 </div>
             </div>
     );
