@@ -9,7 +9,7 @@ export default function FeedPage() {
             <TopNav/>
             {/* Posts Container */}
             <div className="h-36"></div>
-            <div className="flex flex-col items-center mb-60 shadow-2xl">
+            <div className="flex flex-col items-center mb-60">
                 <CreateNewPost />
                 <Post />
             </div>
