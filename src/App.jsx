@@ -1,6 +1,6 @@
 import { useAtomValue } from "jotai";
 
-import ChatPage from "./ChatPage";
+import ChatPage from "./Pages/ChatPage";
 import Home from "./Pages/Home";
 import CreateUser from "./components/CreateUser";
 import Login from "./Pages/Login";
