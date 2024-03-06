@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import LogoButton from "./Logo/Logo";
+import LogoButton from "../components/Logo/Logo";
 
 export default function CreateUser() {
     const [usernameValue, setUsernameValue] = useState("");
@@ -73,33 +73,33 @@ export default function CreateUser() {
 
     return (
         <div>
-            <div className="flex mb-10">
+            <div className="flex justify-center mb-10 bg-primary-900">
                 <LogoButton />
             </div>
 
             <div className="w-400 md:w-480 lg:w-638">
-                <br></br>
+
                 {/* Header 1 Create new Account */}
-                <h1 className="flex justify-center text-5xl font-bold text-center">
+                <h1 className="flex justify-center mb-4 text-5xl font-bold text-center">
                     Create a new account
                 </h1>
-                <br></br>
+
                 {/* Header 2 Slogan */}
                 <h2 className="flex justify-center text-xs">
                     A place for Paw-sitivity and Fur-ever friends!
                 </h2>
-                <br></br>
+
 
                 {/* Divider */}
                 <div className="flex flex-col w-full">
-                    <div className="divider before:bg-gray-400 after:bg-gray-400"></div>
+                    <div className="divider"></div>
                 </div>
 
 
                 {/* Form for Creating user */}
-                
+
                 <div className="px-8 md:px-16 lg:px-64 xl:px-96">
-                    
+
                     <form onSubmit={handleCreateUser}>
                         {/* Avatar */}
                         <div className="avatar flex justify-center">
@@ -108,14 +108,14 @@ export default function CreateUser() {
                             </div>
                         </div>
                         {/* File Input */}
-                        <div className="flex flex-col items-center">
+                        <div className="flex flex-col items-center mb-6">
                             <input
                                 type="file"
                                 className="file-input file-input-bordered file-input-warning w-full max-w-xs"
                                 onChange={handleImageChange}
                             />
                         </div>
-                        <br></br>
+
                         <div className="flex flex-row justify-center gap-4 mb-6">
                             {/* Name enter field */}
                             <input
@@ -169,7 +169,7 @@ export default function CreateUser() {
                             />
                         </div>
                         {/* Password enter field */}
-                        <div className="mb-6">
+                        <div className="mb-12">
                             <input
                                 type="password"
                                 value={passwordValue}
@@ -182,9 +182,9 @@ export default function CreateUser() {
                                 required
                             />
                         </div>{" "}
-                        <br></br>
+
                         {/* Create Account button */}
-                        <div className="flex flex-col items-center">
+                        <div className="flex flex-col items-center mb-12">
                             <button
                                 className="btn btn-warning text-blue-800"
                                 type="submit"
@@ -194,9 +194,8 @@ export default function CreateUser() {
                         </div>
                     </form>
                 </div>
-                <br></br>
-                <br></br>
-                <p className="text-sm font-bold flex justify-center">
+
+                <p className="text-sm font-bold flex justify-center mb-12">
                     Already signed up? &nbsp;{" "}
                     <a
                         onClick={navigateToLoginPage}
@@ -206,8 +205,7 @@ export default function CreateUser() {
                         Sign in
                     </a>
                 </p>
-                <br></br>
-                <br></br>
+
             </div>
         </div>
     );

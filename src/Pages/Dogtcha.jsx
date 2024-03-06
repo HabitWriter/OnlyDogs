@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import catImageArr from '../components/Cat/catimage.js';
+import catImageArr from '../components/Cat/catimage.js'
 import dogImageArr from '../components/Dog/dogimage.js';
 import { useNavigate } from 'react-router-dom';
 
@@ -49,17 +49,24 @@ export default function Dogtcha() {
     };
     return (
         <div>
-            <div className="artboard artboard-horizontal phone-5 flex flex-col items-center">
-                <h3>Select all images with dogs</h3>
-                <div className="grid grid-cols-2 gap-4 justify-center">
+            <div className=" flex flex-col items-center mt-4 ">
+                <div className="bg-blue-800 mb-1  w-[200px] md:w-[375px] text-white">
+                    <div className='ps-2'>
+                        <h3>Select all images with</h3>
+                    </div>
+                    <div className=" font-bold text-2xl ps-2">
+                        <h4>Dogs</h4>
+                    </div>
+                </div>
+                <div className="mb-6 grid grid-cols-2 gap-0.5 justify-center">
                     {displayedImages.map((img, index) => (
-                        <div key={index} onClick={() => toggleSelection(img)} className={`m-2.5 border-8 cursor-pointer ${selectedImages.includes(img) ? 'border-yellow-300' : 'border-gray-500'}`}>
-                            <img src={img} alt={`image-${index}`} className="w-40 h-40" />
+                        <div key={index} onClick={() => toggleSelection(img)} className={`m-2.5 border-4 md:border-8 cursor-pointer ${selectedImages.includes(img) ? 'border-yellow-300' : 'border-gray-500'}`}>
+                            <img src={img} alt={`image-${index}`} className="w-20 h-20 md:w-40 md:h-40 object-cover" />
                         </div>
                     ))}
                 </div>
                 <div className='flex flex-col items-center'>
-                    <button className="btn btn-warning flex flex-col items-center" onClick={checkDogtcha}>Submit</button>
+                    <button className="btn btn-warning flex flex-col items-center" onClick={checkDogtcha}>Verify</button>
                 </div>
             </div>
         </div>
