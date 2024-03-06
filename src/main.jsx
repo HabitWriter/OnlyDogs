@@ -4,12 +4,13 @@ import App from './App.jsx'
 import './index.css'
 import { Route, RouterProvider, createRoutesFromElements, createBrowserRouter } from 'react-router-dom'
 import CreateUser from './components/CreateUser.jsx'
-import Home from './components/Home.jsx'
-import Login from './components/Login.jsx'
-import ChatPage from './ChatPage.jsx'
-import Dogtcha from './components/Dogtcha.jsx'
-import NotADog from './components/NotADog.jsx'
-import TransitionTest from './components/TransitionTest.jsx'
+import Home from './Pages/Home.jsx'
+import Login from './Pages/Login.jsx'
+import ChatPage from './Pages/ChatPage.jsx'
+import Dogtcha from './Pages/Dogtcha.jsx'
+import NotADog from './Pages/NotADog.jsx'
+import FeedPage from './Pages/FeedPage.jsx'
+import ProfilePage from './Pages/ProfilePage.jsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -36,18 +37,21 @@ const router = createBrowserRouter(
       />
       {/*Chat Page */}
       <Route
-        path="/chat/"
+        path="/chat"
         element={< ChatPage />}
-        />
+      />
       {/*Not a dog Page */}
       <Route
         path="/notADog"
         element={< NotADog />}
       />
-      {/* {Transition Test} */}
       <Route
-      path="/tt"
-      element={< TransitionTest/>}
+        path="/feed"
+        element={< FeedPage />}
+      />
+      <Route
+        path="/profile"
+        element={< ProfilePage />}
       />
     </Route>,
   ),

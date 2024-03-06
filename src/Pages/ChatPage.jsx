@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import Sidebar from "./components/Sidebar";
-import Chat from "./components/Chat";
-import Navbar from "./components/Navbar";
-import Messages from "./components/Messages";
-import TopOfChat from "./components/TopOfChat";
+import Sidebar from "../components/chatComponents/Sidebar";
+import Chat from "../components/chatComponents/Chat";
+import Navbar from "../components/Navbar";
+import Messages from "../components/chatComponents/Messages";
+import TopOfChat from "../components/TopOfChat";
 import axios from "axios";
 import { get } from "lodash";
 

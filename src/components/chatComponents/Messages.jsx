@@ -1,7 +1,7 @@
 import React from 'react';
 import Input from './Input';
 import { useAtom } from 'jotai';
-import { messageArrayAtom } from '../atom';
+import { messageArrayAtom } from '../../atom';
 
 const Messages = () => {
   const [messages, setMessages] = useAtom(messageArrayAtom)

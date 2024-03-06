@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import catImageArr from './Cat/catimage.js';
-import dogImageArr from './Dog/dogimage.js';
+import catImageArr from '../components/Cat/catimage.js';
+import dogImageArr from '../components/Dog/dogimage.js';
 import { useNavigate } from 'react-router-dom';
 
 export default function Dogtcha() {
