@@ -9,6 +9,7 @@ import Login from './components/Login.jsx'
 import ChatPage from './ChatPage.jsx'
 import Dogtcha from './components/Dogtcha.jsx'
 import NotADog from './components/NotADog.jsx'
+import TransitionTest from './components/TransitionTest.jsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -37,10 +38,16 @@ const router = createBrowserRouter(
       <Route
         path="/chat/"
         element={< ChatPage />}
+        />
       {/*Not a dog Page */}
       <Route
         path="/notADog"
         element={< NotADog />}
+      />
+      {/* {Transition Test} */}
+      <Route
+      path="/tt"
+      element={< TransitionTest/>}
       />
     </Route>,
   ),
