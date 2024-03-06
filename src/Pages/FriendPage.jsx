@@ -1,12 +1,12 @@
 import BottomNav from "../components/BottomNav";
 import Post from "../components/Post";
 import CreateNewPost from "../components/CreateNewPost";
-import TopProfileNav from "../components/TopProfileNav";
+import TopFriendNav from "../components/TopFriendNav";
 
-export default function ProfilePage() {
+export default function FriendPage() {
     return (
         <div>
-            <TopProfileNav/>
+            <TopFriendNav/>
             {/* Posts Container */}
             <div className="h-44"></div>
             
@@ -14,7 +14,7 @@ export default function ProfilePage() {
                 <CreateNewPost />
                 <Post />
             </div>
-            <BottomNav selected={2}/>
+            <BottomNav selected={5}/>
         </div>
     );
 }
