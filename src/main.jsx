@@ -45,6 +45,7 @@ const router = createBrowserRouter(
         path="/notADog"
         element={< NotADog />}
       />
+      {/*Feed Page */}
       <Route
         path="/feed"
         element={< FeedPage />}

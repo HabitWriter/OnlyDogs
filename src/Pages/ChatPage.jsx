@@ -6,6 +6,7 @@ import Messages from "../components/chatComponents/Messages";
 import TopOfChat from "../components/TopOfChat";
 import axios from "axios";
 import { get } from "lodash";
+import BottomNav from "../components/BottomNav";
 
 const ChatPage = () => {
   
@@ -21,6 +22,7 @@ const ChatPage = () => {
           {<TopOfChat />}
           <div className="messages bg-gray-200 h-full">{<Messages />}</div>
         </div>
+        <div className="flex-1 bg-gray-800">{<BottomNav/>}</div>
       </div>
     </div>
   );
