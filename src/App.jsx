@@ -1,12 +1,12 @@
 import { useAtomValue } from "jotai";
 
-import ChatPage from "./ChatPage";
-import Home from "./components/Home";
+import ChatPage from "./Pages/ChatPage";
+import Home from "./Pages/Home";
 import CreateUser from "./components/CreateUser";
-import Login from "./components/Login";
+import Login from "./Pages/Login";
 import { Outlet } from "react-router";
-import Dogtcha from "./components/Dogtcha";
-import NotADog from "./components/NotADog";
+import Dogtcha from "./Pages/Dogtcha";
+import NotADog from "./Pages/NotADog";
 
 
 
