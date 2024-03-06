@@ -2,8 +2,6 @@ import BottomNav from "../components/BottomNav";
 import FriendListing from "../components/FriendListing";
 import NewFriendListing from "../components/NewFriendListing";
 import TopFriendNav from "../components/TopFriendNav";
-import CommentButton from "../components/buttons/CommentButton";
-import DeleteButton from "../components/buttons/DeleteButton";
 
 export default function FriendPage() {
     return (
