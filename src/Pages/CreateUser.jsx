@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import LogoButton from "./Logo/LogoButton.jsx";
+import LogoButton from "../components/Logo/LogoButton.jsx";
 
 
 export default function CreateUser() {
