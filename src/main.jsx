@@ -11,6 +11,7 @@ import Dogtcha from './Pages/Dogtcha.jsx'
 import NotADog from './Pages/NotADog.jsx'
 import FeedPage from './Pages/FeedPage.jsx'
 import ProfilePage from './Pages/ProfilePage.jsx'
+import FriendPage from './Pages/FriendPage.jsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -52,6 +53,10 @@ const router = createBrowserRouter(
       <Route
         path="/profile"
         element={< ProfilePage />}
+      />
+      <Route
+        path="/friends"
+        element={< FriendPage />}
       />
     </Route>,
   ),
