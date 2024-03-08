@@ -10,7 +10,7 @@ export default function CreateUser() {
     const [passwordValue, setPasswordValue] = useState("");
     const [breedValue, setBreedValue] = useState("");
     const [avatar, setAvatar] = useState(
-        "https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg"
+        "src/components/Dog/dog1.jpg"
     );
     const navigate = useNavigate();
 

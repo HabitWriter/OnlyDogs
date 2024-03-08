@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import LogoButton from "../components/Logo/Logo.jsx";
 import { useNavigate } from "react-router-dom";
+import Cookies from 'js-cookie';
 
 export default function Login() {
 
@@ -9,13 +10,30 @@ export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  //Check for Dogtcha Cookies
+  useEffect(() => {
+    const dogtchaPassed = Cookies.get('dogtchaPassed');
+    if (dogtchaPassed === 'false') {
+        navigate('/notADog');
+    }
+}, [navigate]);
+
   // Login function
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
       const { data: { user } } = await axios.post('/api/login', { email, password });
-      navigate(`/home/${user.id}`);
-      console.log(user)
+
+      // Check if user has friends in their friendsList
+      // If user has friends, navigate to the feed page
+      if (user.friendsList && user.friendsList.length > 0) {
+        navigate(`/feed/${user.id}`);
+      } 
+      // If user has no friends, navigate to the home page
+      else {
+        navigate(`/home/${user.id}`);
+      }
+      console.log(user);
     } catch (error) {
       console.error('Login failed:', error);
       alert('Login failed. Please check your credentials and try again.');
