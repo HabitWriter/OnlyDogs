@@ -38,7 +38,7 @@ const router = createBrowserRouter(
       />
       {/*Chat Page */}
       <Route
-        path="/chat"
+        path="/chat/:userId"
         element={< ChatPage />}
       />
       {/*Not a dog Page */}
@@ -48,11 +48,11 @@ const router = createBrowserRouter(
       />
       {/*Feed Page */}
       <Route
-        path="/feed"
+        path="/feed/:userId"
         element={< FeedPage />}
       />
       <Route
-        path="/profile"
+        path="/profile/:userId"
         element={< ProfilePage />}
       />
       <Route
