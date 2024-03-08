@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import catImageArr from '../components/Cat/catimage.js'
 import dogImageArr from '../components/Dog/dogimage.js';
 import { useNavigate } from 'react-router-dom';
+import Cookies from 'js-cookie';
 
 export default function Dogtcha() {
     const dogImages = dogImageArr.map(img => img.src);
@@ -10,11 +11,26 @@ export default function Dogtcha() {
     const [displayedImages, setDisplayedImages] = useState([]);
     const navigate = useNavigate();
 
+    //Checks for Dogtcha Cookies
+    useEffect(() => {
+        const dogtchaPassed = Cookies.get('dogtchaPassed');
+        if (dogtchaPassed === 'false') {
+            navigate('/notADog');
+        }
+    }, [navigate]);
+
     // Randomly display 3 dog images and 1 cat image
     useEffect(() => {
         const shuffleArray = (array) => array.sort(() => 0.5 - Math.random());
-        const randomDogs = shuffleArray(dogImages).slice(0, 3);
-        const randomCat = shuffleArray(catImages).slice(0, 1);
+
+        // Shuffle dog and cat images
+        const shuffledDogs = shuffleArray(dogImages);
+        const shuffledCats = shuffleArray(catImages);
+        // Pick the first 3 dog images
+        const randomDogs = shuffledDogs.slice(0, 3);
+
+        // Pick the first cat image
+        const randomCat = shuffledCats.slice(0, 1);
         const mixedImages = shuffleArray([...randomDogs, ...randomCat]);
         setDisplayedImages(mixedImages);
     }, []);
@@ -43,7 +59,11 @@ export default function Dogtcha() {
         if (allDogsSelected && noCatsSelected) {
             alert("YOU DOGGONE DID IT!!! Click OK to create a profile.");
             navigateToCreateUserPage();
-        } else {
+        }
+
+        // Sets a cookie for 1 day
+        else {
+            Cookies.set('dogtchaPassed', 'false', { expires: 1 });
             navigateToNotADogPage();
         }
     };
