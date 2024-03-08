@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import LogoButton from "../components/Logo/Logo.jsx";
+import LogoButton from "../components/Logo/LogoButton.jsx";
 import { useNavigate } from "react-router-dom";
 import Cookies from 'js-cookie';
 

@@ -1,25 +1,31 @@
-import React from 'react';
-import Input from './Input';
-import { useAtom } from 'jotai';
-import { messageArrayAtom } from '../../atom';
+import React from "react";
+import Input from "./Input";
+import { useAtom } from "jotai";
+import { messageArrayAtom } from "../../atom";
+
 
 const Messages = () => {
-  const [messages, setMessages] = useAtom(messageArrayAtom)
+  const [messages, setMessages] = useAtom(messageArrayAtom);
   return (
-    <div className='messages w-[450px] relative bg-indigo-700 h-full flex flex-col '>
+    <div className="">
       <div className="chat chat-start p-4">
-        <div className="chat-bubble"> {messages[1].text}</div>
+        <div className="chat-bubble color: bg-slate-400"> {messages[1].text}</div>
       </div>
       <div className="chat chat-end p-4">
-        <div className="chat-bubble">{messages[1].text}</div>
+        <div className="chat-bubble chat-bubble-primary">{messages[1].text}</div>
       </div>
-      <div className="absolute bottom-16 p-4">
-        <Input />
+      <div className="chat chat-start p-4">
+        <div className="chat-bubble color: bg-slate-400"> {messages[0].text}</div>
       </div>
-    </div>
+      <div className="chat chat-end p-4">
+        <div className="chat-bubble chat-bubble-primary">{messages[2].text}</div>
+      </div>
+
+      
+        
+      </div>
+    
   );
-}
+};
 
 export default Messages;
-
-

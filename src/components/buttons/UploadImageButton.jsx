@@ -4,7 +4,7 @@ export default function UploadImageButton({ clickAction, title }) {
     return (
         <div className="flex items-center">
             <button
-                title={title}
+                title="upload image"
                 className="btn btn-square btn-ghost"
                 onClick={clickAction}
             >
