@@ -33,12 +33,12 @@ const router = createBrowserRouter(
       />
       {/*Home Page */}
       <Route
-        path="/home/:userId"
+        path="/home"
         element={< Home />}
       />
       {/*Chat Page */}
       <Route
-        path="/chat/:userId"
+        path="/chat"
         element={< ChatPage />}
       />
       {/*Not a dog Page */}
@@ -48,11 +48,11 @@ const router = createBrowserRouter(
       />
       {/*Feed Page */}
       <Route
-        path="/feed/:userId"
+        path="/feed"
         element={< FeedPage />}
       />
       <Route
-        path="/profile/:userId"
+        path="/profile"
         element={< ProfilePage />}
       />
       <Route
