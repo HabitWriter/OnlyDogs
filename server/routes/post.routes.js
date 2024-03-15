@@ -1,10 +1,15 @@
 import { Router } from 'express';
-import {User, Post, Chat} from '../models/index.js';
+import {User, Post, Chat, Comment} from '../models/index.js';
 
 const postRouter = Router();
 
 postRouter.get('/all', async (req, res) => {
-  const allPosts = await Post.findAll({});
+  const allPosts = await Post.findAll({
+    include: [{
+      model: Comment,
+      as: 'comments', // Optional: this will alias the relation as 'comments' in the returned data
+    }],
+  });
   res.json(allPosts);
 });
 
