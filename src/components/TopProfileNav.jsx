@@ -2,7 +2,7 @@ import AddButton from "./buttons/AddButton";
 import EditButton from "./buttons/EditButton";
 import OptionsButton from "./buttons/OptionsButton";
 
-export default function TopProfileNav() {
+export default function TopProfileNav({setIsAddingPost}) {
     return (
         <div className="fixed flex justify-between items-center z-10 p-6 pl-12 w-full bg-base-100 shadow-md rounded-3xl">
             <div className="flex items-center">
@@ -20,7 +20,7 @@ export default function TopProfileNav() {
             </div>
             <div className="flex">
             <EditButton/>
-            <AddButton/>
+            <AddButton clickAction={() => setIsAddingPost(true)}/>
             </div>
         </div>
     );

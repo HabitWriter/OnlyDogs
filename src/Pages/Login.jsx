@@ -7,8 +7,8 @@ import Cookies from 'js-cookie';
 export default function Login() {
 
   const navigate = useNavigate();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("user1@example.com");
+  const [password, setPassword] = useState("password1");
 
   //Check for Dogtcha Cookies
   useEffect(() => {
@@ -22,16 +22,21 @@ export default function Login() {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const { data: { user } } = await axios.post('/api/login', { email, password });
-
+      // const { data: { user } } = await axios.post('/api/login', { email, password });
+      const response = await axios.post('/api/login', { email, password });
+      // console.log(response);
+      
+      const user = response.data.user
       // Check if user has friends in their friendsList
       // If user has friends, navigate to the feed page
       if (user.friendsList && user.friendsList.length > 0) {
-        navigate(`/feed/${user.id}`);
+        navigate(`/feed`);
+        // navigate(`/feed/${user.userId}`);
       } 
       // If user has no friends, navigate to the home page
       else {
-        navigate(`/home/${user.id}`);
+        navigate(`/home`);
+        // navigate(`/home/${user.id}`);
       }
       console.log(user);
     } catch (error) {
@@ -69,6 +74,7 @@ export default function Login() {
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder="Email"
                 required
+                
               />
             </div>
 
@@ -82,6 +88,7 @@ export default function Login() {
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder="Password"
                 required
+                
               />
             </div>
 

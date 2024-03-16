@@ -8,8 +8,9 @@ authRouter.post('/api/login', async (req, res) => {
   const user = await User.findOne({ where: { email: email } });
   const isMatch = await bcrypt.compare(password, user.password);
   if (user && isMatch) {
-    req.session.userId = user.id;
-    res.json({ success: true, user: { id: user.id } });
+    req.session.userId = user.userId;
+    console.log(user);
+    res.json({ success: true, user: user });
   } else {
     res.json({ success: false });
   }

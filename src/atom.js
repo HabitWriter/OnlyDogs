@@ -79,30 +79,15 @@ export const userArrayWriteableAtom = atom(
   },
 );
 
-const overwrittenSubtopicFilteredAtom = atom(null)
 
-export const subtopicFilteredWriteableAtom = atom(
-  (get) => get(overwrittenSubtopicFilteredAtom) ?? get(subtopicArrayOrderedAtom),
-  (get, set, newValue) => {
-    const nextValue =
-      typeof newValue === 'function' ? newValue(get(subtopicArrayWriteableAtom)) : newValue
-      console.log(nextValue);
-    set(overwrittenSubtopicFilteredAtom, nextValue)
-  },
-)
-
-
-// Topic Atoms
-export const topicArrayAtom = atom(
-  
+export const CurrentUserAtom = atom(
   async get => {
-    const res = await axios.get("http://localhost:4090/api/topic/all");
+    const res = await axios.get("http://localhost:4090/user/current");
+    // const res = 3
+    console.log(res.data);
     return res.data;
   }
 );
-
-// Overwritten topic array atom
-const overwrittenTopicArrayAtom = atom(null);
 
 // Writable topic array atom
 export const topicArrayWriteableAtom = atom(

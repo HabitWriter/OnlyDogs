@@ -1,6 +1,6 @@
 import LikeButton from "./buttons/LikeButton";
 
-export default function PostComment({body,userId,likes}) {
+export default function PostComment({name,body,userId,likes}) {
     return(
     <>
         {/* Divider */}
@@ -15,7 +15,7 @@ export default function PostComment({body,userId,likes}) {
                 src="src\components\Dog\dog3.jpg"
                 alt=""
             />
-            <h2>{userId}</h2>
+            <h2>{name}</h2>
         </div>
         <p className="card-title w-full ml-16">{body}</p>
         <div className="flex pl-2 ml-6 items-center w-full">

@@ -29,6 +29,26 @@ userRouter.post('/api/user', async (req, res) => {
   }
 });
 
+userRouter.get('/user/current', async (req, res) => {
+  console.log(req.session);
+  if (!req.session.userId) {
+    return res.status(401).send({ error: 'Not logged in' });
+  }
+
+  User.findOne({ where: { userId: req.session.userId } })
+    .then(user => {
+      if (user) {
+        res.send({ user });
+      } else {
+        res.status(404).send({ error: 'User not found' });
+      }
+    })
+    .catch(err => {
+      console.error(err);
+      res.status(500).send({ error: 'Server error' });
+    });
+});
+
 
 
 

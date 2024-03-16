@@ -4,7 +4,7 @@ import CommentButton from "./buttons/CommentButton";
 import UploadImageButton from "./buttons/UploadImageButton";
 import XButton from "./buttons/XButton";
 
-export default function CreateNewPost() {
+export default function CreateNewPost({setIsAddingPost}) {
     return (
         
             <div className="card w-[90%] md:w-[70%] bg-base-100 m-2 shadow-xl">
@@ -18,7 +18,7 @@ export default function CreateNewPost() {
                         />
                         <h2 className="card-title">Chewbarka</h2>
                         </div>
-                        <XButton/>
+                        <XButton clickAction={() => setIsAddingPost(false)}/>
                     </div>
                   
                     <textarea className="textarea w-full textarea-bordered resize-none" placeholder="Am be wanting to bark?"></textarea>
