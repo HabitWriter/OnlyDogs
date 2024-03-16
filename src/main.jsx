@@ -34,7 +34,7 @@ const router = createBrowserRouter(
       />
       {/*Home Page */}
       <Route
-        path="/home/:userId"
+        path="/home"
         element={< Home />}
       />
       {/*Chat Page */}
