@@ -42,6 +42,9 @@ User.init(
     breed: {
       type: DataTypes.STRING,
     },
+    bio: {
+      type: DataTypes.STRING,
+    },
   },
   {
     modelName: 'user',

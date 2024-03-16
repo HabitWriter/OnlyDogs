@@ -12,6 +12,7 @@ import NotADog from './Pages/NotADog.jsx'
 import FeedPage from './Pages/FeedPage.jsx'
 import ProfilePage from './Pages/ProfilePage.jsx'
 import FriendPage from './Pages/FriendPage.jsx'
+import ChatsPage from './Pages/ChatsPage.jsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -40,6 +41,11 @@ const router = createBrowserRouter(
       <Route
         path="/chat"
         element={< ChatPage />}
+      />
+       {/*Chats Page */}
+       <Route
+        path="/chats"
+        element={< ChatsPage />}
       />
       {/*Not a dog Page */}
       <Route
