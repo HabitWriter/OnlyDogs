@@ -15,7 +15,7 @@ export default function ProfilePage() {
     
     useEffect(() => {
         startTransition(() => {
-            // console.log(posts);
+            console.log(posts);
             console.log(currentUser);
         });
     }, [startTransition]);
@@ -32,9 +32,10 @@ export default function ProfilePage() {
                 {isPending ? (
                     <p>Loading...</p>
                 ) : (
-                    posts.map(({user,postId,body,likes,userId,comments}) => (
-                        <Post key={postId} name={user.name} body={body} likes={likes} userId={userId} comments={comments}/>
-                    ))
+                    posts.filter(post => post.user.userId === currentUser.user.userId)
+                        .map(({user,postId,body,likes,userId,comments}) => (
+                            <Post key={postId} name={user.name} body={body} likes={likes} userId={userId} comments={comments}/>
+                        ))
                 )}
             </div>
             <BottomNav selected={2}/>

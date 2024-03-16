@@ -15,7 +15,7 @@ export default function FeedPage() {
 
     useEffect(() => {
         startTransition(() => {
-            console.log(posts);
+            // console.log(posts);
         });
     }, [startTransition]);
 

@@ -84,7 +84,7 @@ export const CurrentUserAtom = atom(
   async get => {
     const res = await axios.get("http://localhost:4090/user/current");
     // const res = 3
-    console.log(res.data);
+    // console.log(res.data);
     return res.data;
   }
 );

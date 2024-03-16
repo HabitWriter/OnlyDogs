@@ -36,7 +36,7 @@ export default function Login() {
       // If user has no friends, navigate to the home page
       else {
         navigate(`/home`);
-        // navigate(`/home/${user.id}`);
+        // navigate(`/home/${user.userId}`);
       }
       console.log(user);
     } catch (error) {
