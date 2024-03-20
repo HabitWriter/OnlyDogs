@@ -1,38 +1,14 @@
 import React, { useState, useEffect } from "react";
 import AddButton from "./buttons/AddButton";
 import EditButton from "./buttons/EditButton";
-import OptionsButton from "./buttons/OptionsButton";
-import axios from "axios"; 
+import { CurrentUserAtom } from "../atom";
+import { useAtomValue } from "jotai";
 
-export default function TopProfileNav() {
-    const [name, setName] = useState("");
-    const [breed, setBreed] = useState("");
-    const [bio, setBio] = useState("");
-    const [isEditing, setIsEditing] = useState(false);
 
-    useEffect(() => {
-        // Fetch user information from the backend when the component mounts
-        fetchUserProfile();
-    }, []);
-
-    const fetchUserProfile = async () => {
-        try {
-            const response = await axios.get('/api/user/1'); 
-            const userData = response.data.user;
-            setName(userData.name);
-            setBreed(userData.breed);
-            setBio(userData.bio);
-        } catch (error) {
-            console.error("Error fetching user profile:", error);
-        }
-    };
-
-    const handleSave = async () => {
-       const response = await axios.post('api/edituserprofile/1', {name, breed, bio});
-       console.log(response.data); // Here is where the backend stuff goes
-        setIsEditing(false);
-    };
-
+export default function TopProfileNav({setIsAddingPost}) {
+    const [isEditing,setIsEditing] = useState(false)
+    const currentUser = useAtomValue(CurrentUserAtom);
+    
     return (
         <div className="fixed flex justify-between items-center z-10 p-6 pl-12 w-full bg-base-100 shadow-md rounded-3xl">
             <div className="flex items-center">
@@ -46,38 +22,34 @@ export default function TopProfileNav() {
                         <>
                             <input
                                 type="text"
-                                value={name}
+                                value={currentUser.user.name}
                                 onChange={(e) => setName(e.target.value)}
                             />
                             <input
                                 type="text"
-                                value={breed}
+                                value={currentUser.user.breed}
                                 onChange={(e) => setBreed(e.target.value)}
                             />
                             <input
                                 type="text"
-                                value={bio}
+                                value={currentUser.user.bio}
                                 onChange={(e) => setBio(e.target.value)}
                             />
                         </>
                     ) : (
                         <>
-                            <h2 className="text-2xl font-bold">{name}</h2>
-                            <p className="font-semibold">{breed}</p>
-                            <p>{bio}</p>
+                            <h2 className="text-2xl font-bold">{currentUser.user.name}</h2>
+                            <p className="font-semibold">{currentUser.user.breed}</p>
+                            <p>{currentUser.user.bio}</p>
                         </>
                     )}
                 </div>
             </div>
             <div className="flex">
-                {isEditing ? (
-                    <button onClick={handleSave}>Save</button>
-                ) : (
-                    <>
-                        <EditButton onClick={() => setIsEditing(true)} />
-                        <AddButton />
-                    </>
-                )}
+
+            <EditButton clickAction={() => setIsEditing(!isEditing)}/>
+            <AddButton clickAction={() => setIsAddingPost(true)}/>
+
             </div>
         </div>
     );

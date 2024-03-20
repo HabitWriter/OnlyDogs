@@ -3,25 +3,45 @@ import BottomNav from "../components/BottomNav";
 import Post from "../components/Post";
 import CreateNewPost from "../components/CreateNewPost";
 import TopLogoNav from "../components/TopLogoNav";
+import { useAtom } from "jotai";
+import { postArrayWriteableAtom, userArrayWriteableAtom } from "../atom";
+import { useTransition, useEffect, useState } from "react";
 
 export default function FeedPage() {
-    const [posts, setPosts] = useState([]);
+    const [posts, setPosts] = useAtom(postArrayWriteableAtom);
+    
+    
+    const [isPending, startTransition] = useTransition();
+    const [isAddingPost, setIsAddingPost] = useState(false);
 
-    // Function to handle adding new post
-    const handleAddPost = (newPost) => {
-        setPosts([...posts, newPost]);
-    };
+    useEffect(() => {
+        startTransition(() => {
+            // console.log(posts);
+        });
+    }, [startTransition]);
 
     return (
         <div>
-            <TopLogoNav/>
+            <TopLogoNav setIsAddingPost={setIsAddingPost}/>
             {/* Posts Container */}
             <div className="h-24"></div>
             <div className="flex flex-col items-center mb-60">
-                <CreateNewPost onAddPost={handleAddPost} /> {/* Pass the handleAddPost function as a prop */}
-                <Post posts={posts} /> {/* Pass the array of posts as a prop */}
+            {isAddingPost ? <CreateNewPost setIsAddingPost={setIsAddingPost}/> : <div></div>}
+                {/* {startTransition(() => {
+                    posts.map(({postId,body,likes,userId,comments}) => (
+                        <Post key={postId} body={body} likes={likes} userId={userId} comments={comments}/>
+                    ))
+                })} */}
+                {isPending ? (
+                    <p>Loading...</p>
+                ) : (
+                    
+                    posts.map(({user,postId,body,likes,userId,comments}) => (
+                        <Post key={postId} name={user.name} body={body} likes={likes} userId={userId} comments={comments}/>
+                    ))
+                )}
             </div>
-            <BottomNav selected={3}/>
+            <BottomNav selected={3} />
         </div>
     );
 }
