@@ -1,8 +1,13 @@
+import { useAtomValue } from "jotai";
 import LikeButton from "../components/buttons/LikeButton";
 import PostComment from "./PostComment";
 import CommentButton from "./buttons/CommentButton";
+import { userArrayWriteableAtom } from "../atom";
 
-export default function Post() {
+export default function Post({name,body,likes,userId,comments}) {
+    
+    
+    
     return (
             <div className="card w-[90%] md:w-[70%] bg-base-100 m-2 shadow-xl">
                 <div className="card-body items-center">
@@ -12,16 +17,18 @@ export default function Post() {
                             src="src\components\Dog\dog1.jpg"
                             alt=""
                         />
-                        <h2>Chewbarka</h2>
+                        <h2>{name}</h2>
                     </div>
                     <p className="card-title w-full ml-12 mr-2">
-                        If a dog chews shoes whose shoes does he choose?
+                        {body}
                     </p>
                     <div className="flex w-full pl-2 items-center">
-                        <LikeButton />
+                        <LikeButton likes={likes} />
                         <CommentButton />
                     </div>
-                    <PostComment/>
+                    {comments.map(({user, commentId, body, userId, likes}) => (
+                        <PostComment key={commentId} name={user.name} body={body} userId={userId} likes={likes} />
+                    ))}
                 </div>
             </div>
     );

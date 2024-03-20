@@ -1,18 +1,35 @@
-import { Router } from 'express';
-import {User, Post, Chat} from '../models/index.js';
+import { Router } from "express";
+import { User, Post, Chat, Comment } from "../models/index.js";
 
 const postRouter = Router();
 
-postRouter.get('/all', async (req, res) => {
-  const allPosts = await Post.findAll({});
-  res.json(allPosts);
+postRouter.get("/all", async (req, res) => {
+    const allPosts = await Post.findAll({
+        include: [
+            {
+                model: Comment,
+                as: "comments", // Optional: this will alias the relation as 'comments' in the returned data
+                include: [
+                    {
+                        model: User,
+                        as: "user", // Optional: this will alias the relation as 'user' in the returned data
+                    },
+                ],
+            },
+            {
+                model: User,
+                as: "user", // Optional: this will alias the relation as 'user' in the returned data
+            },
+        ],
+    });
+    res.json(allPosts);
 });
 
 // topicRouter.post('/new', async (req, res) => {
 //     const {title} = req.body;
 
-//     const topic = await Topic.create({title : title}) 
-    
+//     const topic = await Topic.create({title : title})
+
 //     res.json(topic)
 // });
 
@@ -22,7 +39,7 @@ postRouter.get('/all', async (req, res) => {
 //   const topic = await Topic.findOne({ where: {topicId : topicId}})
 
 //   topic.title = title
-  
+
 //   await topic.save();
 //   console.log(topic);
 
@@ -44,4 +61,4 @@ postRouter.get('/all', async (req, res) => {
 //   res.json({ message: 'Topic deleted successfully' });
 // });
 
-export default postRouter; 
+export default postRouter;

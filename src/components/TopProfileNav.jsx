@@ -4,34 +4,8 @@ import EditButton from "./buttons/EditButton";
 import OptionsButton from "./buttons/OptionsButton";
 import axios from "axios"; 
 
-export default function TopProfileNav() {
-    const [name, setName] = useState("");
-    const [breed, setBreed] = useState("");
-    const [bio, setBio] = useState("");
-    const [isEditing, setIsEditing] = useState(false);
 
-    useEffect(() => {
-        // Fetch user information from the backend when the component mounts
-        fetchUserProfile();
-    }, []);
-
-    const fetchUserProfile = async () => {
-        try {
-            const response = await axios.get('/api/user/1'); 
-            const userData = response.data.user;
-            setName(userData.name);
-            setBreed(userData.breed);
-            setBio(userData.bio);
-        } catch (error) {
-            console.error("Error fetching user profile:", error);
-        }
-    };
-
-    const handleSave = async () => {
-       const response = await axios.post('api/edituserprofile/1', {name, breed, bio});
-       console.log(response.data); // Here is where the backend stuff goes
-        setIsEditing(false);
-    };
+export default function TopProfileNav({setIsAddingPost}) {
 
     return (
         <div className="fixed flex justify-between items-center z-10 p-6 pl-12 w-full bg-base-100 shadow-md rounded-3xl">
@@ -70,14 +44,10 @@ export default function TopProfileNav() {
                 </div>
             </div>
             <div className="flex">
-                {isEditing ? (
-                    <button onClick={handleSave}>Save</button>
-                ) : (
-                    <>
-                        <EditButton onClick={() => setIsEditing(true)} />
-                        <AddButton />
-                    </>
-                )}
+
+            <EditButton/>
+            <AddButton clickAction={() => setIsAddingPost(true)}/>
+
             </div>
         </div>
     );
