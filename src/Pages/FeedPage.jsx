@@ -8,36 +8,33 @@ import { useTransition, useEffect, useState } from "react";
 
 export default function FeedPage() {
     const [posts, setPosts] = useAtom(postArrayWriteableAtom);
-    
-    
+
     const [isPending, startTransition] = useTransition();
     const [isAddingPost, setIsAddingPost] = useState(false);
 
-    useEffect(() => {
-        startTransition(() => {
-            // console.log(posts);
-        });
-    }, [startTransition]);
-
     return (
         <div>
-            <TopLogoNav setIsAddingPost={setIsAddingPost}/>
+            <TopLogoNav setIsAddingPost={setIsAddingPost} />
             {/* Posts Container */}
             <div className="h-24"></div>
             <div className="flex flex-col items-center mb-60">
-            {isAddingPost ? <CreateNewPost setIsAddingPost={setIsAddingPost}/> : <div></div>}
-                {/* {startTransition(() => {
-                    posts.map(({postId,body,likes,userId,comments}) => (
-                        <Post key={postId} body={body} likes={likes} userId={userId} comments={comments}/>
-                    ))
-                })} */}
-                {isPending ? (
-                    <p>Loading...</p>
+                {isAddingPost ? (
+                    <CreateNewPost setIsAddingPost={setIsAddingPost} />
                 ) : (
-                    
-                    posts.map(({user,postId,body,likes,userId,comments}) => (
-                        <Post key={postId} name={user.name} body={body} likes={likes} userId={userId} comments={comments}/>
-                    ))
+                    <div></div>
+                )}
+
+                {posts.map(
+                    ({ user, postId, body, likes, userId, comments }) => (
+                        <Post
+                            key={postId}
+                            name={user.name}
+                            body={body}
+                            likes={likes}
+                            userId={userId}
+                            comments={comments}
+                        />
+                    )
                 )}
             </div>
             <BottomNav selected={3} />

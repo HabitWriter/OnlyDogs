@@ -3,8 +3,12 @@ import PostComment from "./PostComment";
 import CommentButton from "./buttons/CommentButton";
 import UploadImageButton from "./buttons/UploadImageButton";
 import XButton from "./buttons/XButton";
+import { useAtom, useAtomValue } from "jotai";
+import { postArrayWriteableAtom, CurrentUserAtom } from "../atom";
 
 export default function CreateNewPost({setIsAddingPost}) {
+    const currentUser = useAtomValue(CurrentUserAtom);
+    
     return (
         
             <div className="card w-[90%] md:w-[70%] bg-base-100 m-2 shadow-xl">
@@ -16,14 +20,14 @@ export default function CreateNewPost({setIsAddingPost}) {
                             src="src\components\Dog\dog1.jpg"
                             alt=""
                         />
-                        <h2 className="card-title">Chewbarka</h2>
+                        <h2 className="card-title">{currentUser.user.name}</h2>
                         </div>
                         <XButton clickAction={() => setIsAddingPost(false)}/>
                     </div>
                   
                     <textarea className="textarea w-full textarea-bordered resize-none" placeholder="Am be wanting to bark?"></textarea>
                     <div className="flex justify-end w-full">
-                    <UploadImageButton/>
+                    
                     <button className="w-24 ml-2 btn btn-primary">Post</button>
                     </div>
                 </div>
