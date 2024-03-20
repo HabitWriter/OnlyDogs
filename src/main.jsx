@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {Suspense} from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
 import './index.css'
@@ -16,7 +16,11 @@ import ChatsPage from './Pages/ChatsPage.jsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path="/" element={<App />}>
+    <Route path="/" element={
+    <Suspense fallback={<div>Loading...</div>}>
+    <App />
+    </Suspense>
+    }>
       {/* Login Page */}
       <Route
         index
