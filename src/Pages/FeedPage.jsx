@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import BottomNav from "../components/BottomNav";
 import Post from "../components/Post";
 import CreateNewPost from "../components/CreateNewPost";

@@ -1,4 +1,3 @@
-import { useState } from "react";
 import BottomNav from "../components/BottomNav";
 import Post from "../components/Post";
 import CreateNewPost from "../components/CreateNewPost";
