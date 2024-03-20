@@ -16,6 +16,8 @@ userRouter.get('/api/user/:userId', async (req, res) => {
   User.findOne({ where: { userId: req.params.userId } }).then(user => res.send({ user }));
 });
 
+
+
 userRouter.post('/api/user', async (req, res) => {
   console.log(req.body); // Log request body for debugging
   const { username, name, email, password, breed } = req.body;
@@ -50,6 +52,21 @@ userRouter.get('/user/current', async (req, res) => {
 });
 
 
+
+userRouter.post('/api/edituserprofile/:userId', async (req, res) => {
+  const userId = req.params.userId;
+  const { name, breed, bio } = req.body;
+  const user = await User.findOne({ where: { userId } });
+  if (user) {
+    user.name = name;
+    user.breed = breed;
+    user.bio = bio;
+    await user.save();
+    res.json({ message: 'Profile updated successfully', user });
+  } else {
+    res.status(404).json({ error: 'User not found' });
+  }
+});
 
 
 // subtopicRouter.post('/new', async (req, res) => {
