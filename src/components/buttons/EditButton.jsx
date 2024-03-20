@@ -1,11 +1,11 @@
 import React from "react";
 
-const EditButton = ({ onClick, title }) => {
+const EditButton = ({ clickAction, title }) => {
   return (
     <button
       title={title}
       className="btn btn-square btn-ghost"
-      onClick={onClick}
+      onClick={clickAction}
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"

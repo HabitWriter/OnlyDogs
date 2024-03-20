@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 export default function BottomNav({ selected }) {
@@ -8,6 +9,21 @@ export default function BottomNav({ selected }) {
     let feedClassName = "";
     let chatClassName = "";
     let friendsClassName = "";
+    
+
+    async function handleLogout() {
+        try {
+          const response = await axios.post('/api/logout');
+          if (response.data.success) {
+            console.log("logged out!");
+            navigate("/")
+          } else {
+            console.log("Not logged out. Oh no!");
+          }
+        } catch (error) {
+          console.error(error)
+        }
+      };
 
     function highlightSelected(selected) {
         switch (selected) {
@@ -225,7 +241,7 @@ export default function BottomNav({ selected }) {
                     <div className="flex flex-col justify-center items-center">
                     <h3 className="font-bold text-lg">Settings</h3>
                         <div className="divider"></div> 
-                        <button className="btn btn-ghost">Logout</button>
+                        <button onClick={handleLogout} className="btn btn-ghost">Logout</button>
                         <button className="btn btn-ghost">Report a Problem</button>
                         <button className="btn btn-ghost">Edit Profile</button>
                         
