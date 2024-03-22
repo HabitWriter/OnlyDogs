@@ -25,13 +25,13 @@ postRouter.get("/all", async (req, res) => {
     res.json(allPosts);
 });
 
-// topicRouter.post('/new', async (req, res) => {
-//     const {title} = req.body;
+postRouter.post('/new', async (req, res) => {
+    const {title} = req.body;
 
-//     const topic = await Topic.create({title : title})
+    const topic = await Post.create({title : title})
 
-//     res.json(topic)
-// });
+    res.json(topic)
+});
 
 // topicRouter.post('/edit', async (req, res) => {
 //   const {topicId, title} = req.body;

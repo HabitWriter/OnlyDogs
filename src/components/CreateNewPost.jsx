@@ -1,37 +1,42 @@
-import LikeButton from "./buttons/LikeButton";
-import PostComment from "./PostComment";
-import CommentButton from "./buttons/CommentButton";
-import UploadImageButton from "./buttons/UploadImageButton";
+import React, { useState } from "react";
 import XButton from "./buttons/XButton";
-import { useAtom, useAtomValue } from "jotai";
-import { postArrayWriteableAtom, CurrentUserAtom } from "../atom";
 
-export default function CreateNewPost({setIsAddingPost}) {
-    const currentUser = useAtomValue(CurrentUserAtom);
-    
+export default function CreateNewPost({ setIsAddingPost, addNewPost, userId }) {
+    const [postContent, setPostContent] = useState("");
+
+    const handlePost = () => {
+        if (postContent.trim() !== "") {
+            // Create a new post object containing userId and body
+            const newPostData = {
+                userId: userId, // Assuming userId is passed as a prop
+                body: postContent.trim()
+            };
+            // Pass the new post data to the addNewPost function
+            addNewPost(newPostData);
+            setIsAddingPost(false); // Close the create new post section
+            setPostContent(""); // Clear the textarea
+        }
+    };
+
     return (
-        
-            <div className="card w-[90%] md:w-[70%] bg-base-100 m-2 shadow-xl">
-                <div className="card-body items-center">
-                    <div className="flex items-center w-full justify-between">
-                        <div className="flex">
-                        <img
-                            className="h-12 w-12 mr-4 my-2 rounded-full object-cover"
-                            src="src\components\Dog\dog1.jpg"
-                            alt=""
-                        />
-                        <h2 className="card-title">{currentUser.user.name}</h2>
-                        </div>
-                        <XButton clickAction={() => setIsAddingPost(false)}/>
+        <div className="card w-[90%] md:w-[70%] bg-base-100 m-2 shadow-xl">
+            <div className="card-body items-center">
+                <div className="flex items-center w-full justify-between">
+                    <div className="flex">
+                        {/* Your user avatar and name */}
                     </div>
-                  
-                    <textarea className="textarea w-full textarea-bordered resize-none" placeholder="Am be wanting to bark?"></textarea>
-                    <div className="flex justify-end w-full">
-                    
-                    <button className="w-24 ml-2 btn btn-primary">Post</button>
-                    </div>
+                    <XButton clickAction={() => setIsAddingPost(false)} />
+                </div>
+                <textarea
+                    className="textarea w-full textarea-bordered resize-none"
+                    placeholder="Write something..."
+                    value={postContent}
+                    onChange={(e) => setPostContent(e.target.value)}
+                ></textarea>
+                <div className="flex justify-end w-full">
+                    <button className="w-24 ml-2 btn btn-primary" onClick={handlePost}>Post</button>
                 </div>
             </div>
+        </div>
     );
 }
-
