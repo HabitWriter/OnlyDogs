@@ -1,6 +1,5 @@
 [
   {
-    "commentId": 1,
     "body": "This is a comment",
     "userId": 1,
     "likes": 10,
@@ -8,7 +7,6 @@
     "postId": 1
   },
   {
-    "commentId": 2,
     "body": "This is another comment",
     "userId": 2,
     "likes": 5,
@@ -16,7 +14,6 @@
     "postId": 1
   },
   {
-    "commentId": 3,
     "body": "This is yet another comment",
     "userId": 3,
     "likes": 7,

@@ -1,6 +1,24 @@
+import { useState } from "react";
 import LikeButton from "./buttons/LikeButton";
+import axios from "axios";
 
-export default function PostComment({name,body,userId,likes}) {
+export default function PostComment({name,body,userId, commentId, likes}) {
+    const [currentLikes, setCurrentLikes] = useState(likes)
+    
+
+    async function addLike() {
+        
+        const responseData = await axios.post("/api/comment/like", {
+            commentId: commentId,
+        });
+        // console.log(commentId);
+        // console.log(responseData);
+
+        setCurrentLikes(currentLikes + 1);
+    }
+    
+    
+    
     return(
     <>
         {/* Divider */}
@@ -19,7 +37,7 @@ export default function PostComment({name,body,userId,likes}) {
         </div>
         <p className="card-title w-full ml-16">{body}</p>
         <div className="flex pl-2 ml-6 items-center w-full">
-            <LikeButton likes={likes} />
+            <LikeButton clickAction={addLike} likes={currentLikes} />
         </div>
     </>
     )

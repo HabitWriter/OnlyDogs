@@ -1,47 +1,47 @@
 import { Router } from 'express';
-import {User, Comment, Chat} from '../models/index.js';
+import {User, Comment, Post, Chat} from '../models/index.js';
 
 const commentRouter = Router();
 
-commentRouter.get('/all', async (req, res) => {
-  const allComments = await Comment.findAll({});
-  res.json(allComments);
-});
-
-// topicRouter.post('/new', async (req, res) => {
-//     const {title} = req.body;
-
-//     const topic = await Topic.create({title : title}) 
-    
-//     res.json(topic)
+// commentRouter.get('/all', async (req, res) => {
+//   const allComments = await Comment.findAll({});
+//   res.json(allComments);
 // });
 
-// topicRouter.post('/edit', async (req, res) => {
-//   const {topicId, title} = req.body;
+commentRouter.post("/like", async (req,res) => {
+  const {commentId} = req.body;
+  console.log(commentId);
+  const currentComment = await Comment.findByPk(commentId)
 
-//   const topic = await Topic.findOne({ where: {topicId : topicId}})
+  // console.log(req.body);
+  // console.log(currentComment);
+  currentComment.likes++
 
-//   topic.title = title
-  
-//   await topic.save();
-//   console.log(topic);
+  currentComment.save();
 
-//   res.json(topic);
+  res.json(currentComment);
 
-// });
+})
 
-// topicRouter.delete('/delete/:topicId', async (req, res) => {
-//   const { topicId } = req.params;
+commentRouter.post("/new", async (req,res) => {
+  const {userId, body, postId} = req.body;
+  const currentUser = await User.findByPk(userId)
+  const currentPost = await Post.findByPk(postId)
+  const newComment = await Comment.create({ body: body})
+  await currentUser.addComment(newComment)
+  await currentPost.addComment(newComment)
 
-//   const topic = await Topic.findOne({ where: { topicId: topicId } });
-//   console.log(topic);
-//   if (!topic) {
-//     return res.status(404).json({ error: 'Topic not found' });
-//   }
-
-//   await topic.destroy();
-
-//   res.json({ message: 'Topic deleted successfully' });
-// });
+  // Reload the post to include the associated user
+  const commentWithUser = await Comment.findByPk(newComment.commentId, {
+      include: [
+          {
+              model: User,
+              as: "user", // Optional: this will alias the relation as 'user' in the returned data
+          },
+      ]
+  })
+  // console.log(commentWithUser);
+  res.json(commentWithUser)
+})
 
 export default commentRouter; 

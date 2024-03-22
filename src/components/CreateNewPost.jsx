@@ -1,8 +1,4 @@
 import React, { useRef } from 'react';
-import LikeButton from "./buttons/LikeButton";
-import PostComment from "./PostComment";
-import CommentButton from "./buttons/CommentButton";
-import UploadImageButton from "./buttons/UploadImageButton";
 import XButton from "./buttons/XButton";
 import { useAtom, useAtomValue } from "jotai";
 import { postArrayWriteableAtom, CurrentUserAtom } from "../atom";
