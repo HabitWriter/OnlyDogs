@@ -19,10 +19,6 @@ Comment.init(
       type: DataTypes.TEXT,
       allowNull: false,
     },
-    userId: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-    },
     likes: {
       type: DataTypes.INTEGER,
       defaultValue: 0,
@@ -30,6 +26,10 @@ Comment.init(
     dislikes: {
       type: DataTypes.INTEGER,
       defaultValue: 0,
+    },
+    timeCreated: {
+      type: DataTypes.DATE,
+      defaultValue: DataTypes.NOW,
     },
   },
   {
