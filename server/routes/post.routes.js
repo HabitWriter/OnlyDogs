@@ -25,13 +25,56 @@ postRouter.get("/all", async (req, res) => {
     res.json(allPosts);
 });
 
-postRouter.post('/new', async (req, res) => {
-    const {title} = req.body;
+postRouter.post("/like", async (req,res) => {
+  const {postId} = req.body;
+  const currentPost = await Post.findByPk(postId)
 
-    const topic = await Post.create({title : title})
+  // console.log(req.body);
+  // console.log(currentPost);
+  currentPost.likes++
 
-    res.json(topic)
-});
+  currentPost.save();
+
+  res.json(currentPost);
+
+})
+
+postRouter.post("/new", async (req,res) => {
+    const {userId, body, image} = req.body;
+    const currentUser = await User.findByPk(userId)
+    const newPost = await Post.create({ body: body, image: image})
+    await currentUser.addPost(newPost)
+
+    // Reload the post to include the associated user
+    const postWithUser = await Post.findByPk(newPost.postId, {
+        include: [
+            {
+                model: Comment,
+                as: "comments", // Optional: this will alias the relation as 'comments' in the returned data
+                include: [
+                    {
+                        model: User,
+                        as: "user", // Optional: this will alias the relation as 'user' in the returned data
+                    },
+                ],
+            },
+            {
+                model: User,
+                as: "user", // Optional: this will alias the relation as 'user' in the returned data
+            },
+        ]
+    })
+    // console.log(postWithUser);
+    res.json(postWithUser)
+})
+
+// topicRouter.post('/new', async (req, res) => {
+//     const {title} = req.body;
+
+ //   const topic = await Post.create({title : title})
+
+  //  res.json(topic)
+// });
 
 // topicRouter.post('/edit', async (req, res) => {
 //   const {topicId, title} = req.body;
