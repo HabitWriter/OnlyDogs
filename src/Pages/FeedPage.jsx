@@ -28,6 +28,7 @@ export default function FeedPage() {
                     ({ user, postId, body, likes, userId, comments }) => (
                         <Post
                             key={postId}
+                            postId={postId}
                             name={user.name}
                             body={body}
                             likes={likes}

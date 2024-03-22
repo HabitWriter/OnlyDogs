@@ -1,3 +1,4 @@
+import React, { useRef } from 'react';
 import LikeButton from "./buttons/LikeButton";
 import PostComment from "./PostComment";
 import CommentButton from "./buttons/CommentButton";
@@ -5,9 +6,25 @@ import UploadImageButton from "./buttons/UploadImageButton";
 import XButton from "./buttons/XButton";
 import { useAtom, useAtomValue } from "jotai";
 import { postArrayWriteableAtom, CurrentUserAtom } from "../atom";
+import axios from 'axios';
 
 export default function CreateNewPost({setIsAddingPost}) {
+    const [posts, setPosts] = useAtom(postArrayWriteableAtom)
     const currentUser = useAtomValue(CurrentUserAtom);
+    const PostRef = useRef("") 
+
+    async function changePost(value) {
+        PostRef.current=value
+        // console.log(PostRef.current);
+    }
+    
+    async function newPost() {
+        const response = await axios.post("/api/post/new", {userId : currentUser.user.userId, body: PostRef.current, image: "dog1.jpg"})
+        const newPost = response.data
+        setIsAddingPost(false)
+        console.log(newPost);
+        setPosts([newPost, ...posts])
+    }
     
     return (
         
@@ -25,10 +42,10 @@ export default function CreateNewPost({setIsAddingPost}) {
                         <XButton clickAction={() => setIsAddingPost(false)}/>
                     </div>
                   
-                    <textarea className="textarea w-full textarea-bordered resize-none" placeholder="Am be wanting to bark?"></textarea>
+                    <textarea onChange={(e) => changePost(e.target.value)} className="textarea w-full textarea-bordered resize-none" placeholder="Am be wanting to bark?"></textarea>
                     <div className="flex justify-end w-full">
                     
-                    <button className="w-24 ml-2 btn btn-primary">Post</button>
+                    <button onClick={newPost} className="w-24 ml-2 btn btn-primary">Post</button>
                     </div>
                 </div>
             </div>

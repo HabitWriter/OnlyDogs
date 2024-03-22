@@ -38,7 +38,7 @@ const postArrayAtom = atom(
 
 const postArrayOrderedAtom = atom(async (get) => {
   const postArray = await get(postArrayAtom);
-  return postArray.sort((a, b) => new Date(b.timeAccessed) - new Date(a.timeAccessed));
+  return postArray.sort((a, b) => new Date(b.timeCreated) - new Date(a.timeCreated));
 });
 
 const overwrittenPostArrayAtom = atom(null)
