@@ -17,6 +17,7 @@
     "cors": "^2.8.5",
     "express": "^4.18.2",
     "express-session": "^1.17.3",
+    "helmet": "^7.1.0",
     "jotai": "^2.6.1",
     "lodash": "^4.17.21",
     "morgan": "^1.10.0",
@@ -32,7 +33,6 @@
     "socket.io-client": "^4.7.4",
     "vite-express": "^0.9.1",
     "ws": "^8.16.0"
-
   },
   "devDependencies": {
     "@types/react": "^18.2.37",

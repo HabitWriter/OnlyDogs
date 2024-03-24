@@ -30,6 +30,10 @@ Post.init(
       type: DataTypes.INTEGER,
       defaultValue: 0,
     },
+    timeCreated: {
+      type: DataTypes.DATE,
+      defaultValue: DataTypes.NOW,
+    },
   },
   {
     modelName: 'post',

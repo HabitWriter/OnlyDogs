@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {Suspense} from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
 import './index.css'
@@ -12,10 +12,15 @@ import NotADog from './Pages/NotADog.jsx'
 import FeedPage from './Pages/FeedPage.jsx'
 import ProfilePage from './Pages/ProfilePage.jsx'
 import FriendPage from './Pages/FriendPage.jsx'
+import ChatsPage from './Pages/ChatsPage.jsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path="/" element={<App />}>
+    <Route path="/" element={
+    <Suspense fallback={<div>Loading...</div>}>
+    <App />
+    </Suspense>
+    }>
       {/* Login Page */}
       <Route
         index
@@ -40,6 +45,11 @@ const router = createBrowserRouter(
       <Route
         path="/chat"
         element={< ChatPage />}
+      />
+       {/*Chats Page */}
+       <Route
+        path="/chats"
+        element={< ChatsPage />}
       />
       {/*Not a dog Page */}
       <Route

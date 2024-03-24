@@ -1,4 +1,4 @@
-export default function LikeButton({ clickAction, title }) {
+export default function LikeButton({ clickAction, title, likes }) {
     // TODO Need to change functioning, title, and links based on props
 
     return (
@@ -25,7 +25,7 @@ export default function LikeButton({ clickAction, title }) {
                     fillRule="nonzero"
                 />
             </svg>
-        <h4 className="font-bold">23</h4>
+        <h4 className="font-bold">{likes}</h4>
         </button>
         </div>
     );

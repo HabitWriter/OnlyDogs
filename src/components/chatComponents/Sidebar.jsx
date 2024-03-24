@@ -6,9 +6,9 @@ import TopProfileNav from '../TopProfileNav'
 
 export const Sidebar = () => {
   return (
-    <div className='sidebar bg-indigo'>
+    <div className='sidebar bg-indigo h-screen'>
         
-        <Navbar />
+        
         <Search/>
         <Chats/>
         </div>

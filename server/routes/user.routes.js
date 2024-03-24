@@ -23,6 +23,8 @@ userRouter.get('/api/user/:userId', async (req, res) => {
   User.findOne({ where: { userId: req.params.userId } }).then(user => res.send({ user }));
 });
 
+
+
 userRouter.post('/api/user', async (req, res) => {
   console.log(req.body); // Log request body for debugging
   const { username, name, email, password, breed } = req.body;
@@ -35,6 +37,7 @@ userRouter.post('/api/user', async (req, res) => {
     res.status(500).send("There was an error creating the user.");
   }
 });
+
 
 //Display friends 
 userRouter.get('/api/friends', async (req, res) => {
@@ -63,7 +66,26 @@ userRouter.get('/api/friends', async (req, res) => {
       console.error("Error fetching friends:", error);
       res.status(500).send("Error fetching friends");
   }
-});
+
+userRouter.get('/user/current', async (req, res) => {
+  console.log(req.session);
+  if (!req.session.userId) {
+    return res.status(401).send({ error: 'Not logged in' });
+  }
+
+  User.findOne({ where: { userId: req.session.userId } })
+    .then(user => {
+      if (user) {
+        res.send({ user });
+      } else {
+        res.status(404).send({ error: 'User not found' });
+      }
+    })
+    .catch(err => {
+      console.error(err);
+      res.status(500).send({ error: 'Server error' });
+    });
+
 
 // Delete friend
 userRouter.delete('/api/friends/:friendId', async (req, res) => {
@@ -120,6 +142,22 @@ userRouter.get('/api/randomNotFriend', async (req, res) => {
     res.status(500).send("Error fetching random non-friend user");
   }
 });
+
+userRouter.post('/api/edituserprofile/:userId', async (req, res) => {
+  const userId = req.params.userId;
+  const { name, breed, bio } = req.body;
+  const user = await User.findOne({ where: { userId } });
+  if (user) {
+    user.name = name;
+    user.breed = breed;
+    user.bio = bio;
+    await user.save();
+    res.json({ message: 'Profile updated successfully', user });
+  } else {
+    res.status(404).json({ error: 'User not found' });
+  }
+});
+
 
 // subtopicRouter.post('/new', async (req, res) => {
 //     const {title, topicId} = req.body;
