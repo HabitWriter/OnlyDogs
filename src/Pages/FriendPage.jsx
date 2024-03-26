@@ -13,8 +13,6 @@ export default function FriendPage() {
             <div className="flex flex-col items-center mb-60 px-6 md:px-40 lg:px-72">
                 <div className="divider font-bold">Your Dawgz</div>
                 <FriendListing />
-                <div className="divider"></div>
-                <FriendListing />
                 <div className="divider font-bold">New Friends</div>
                 <NewFriendListing/>
             </div>
