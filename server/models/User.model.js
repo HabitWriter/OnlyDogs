@@ -37,7 +37,7 @@ User.init(
       allowNull: false,
     },
     friendsList: {
-      type: DataTypes.ARRAY(DataTypes.INTEGER),
+      type: DataTypes.ARRAY(DataTypes.STRING),
     },
     breed: {
       type: DataTypes.STRING,

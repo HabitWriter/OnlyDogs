@@ -1,11 +1,10 @@
-export default function DeleteButton({ clickAction, title }) {
-    // TODO Need to change functioning, title, and links based on props
-
+export default function DeleteButton({ clickAction, title, friendId }) {
+   
     return (
         <button
             title={title}
             className="btn btn-square btn-ghost"
-            onClick={clickAction}
+            onClick={() => clickAction(friendId)} 
         >
             <svg
                 xmlns="http://www.w3.org/2000/svg"
