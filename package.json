@@ -8,7 +8,8 @@
     "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
-    "seed": "node server/seeds/seed.js"
+    "seed": "node server/seeds/seed.js",
+    "initdb": "dropdb --if-exists only-dogs && createdb only-dogs"
   },
   "dependencies": {
     "axios": "^1.4.0",

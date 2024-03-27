@@ -16,6 +16,7 @@ function loginRequired(req, res, next) {
 
 userRouter.get('/all', async (req, res) => {
   const allUsers = await User.findAll({});
+  console.log("HIT!");
   res.json(allUsers);
 });
 
@@ -120,28 +121,28 @@ userRouter.get('/api/randomNotFriend', async (req, res) => {
     // if (!userId) {
     //   return res.status(401).json({ message: 'User not logged in' });
     // }
-    const user = await User.findByPk(userId);
-    // Check if user exists in the database
-    if (!user) {
+    const currentUser = await User.findByPk(userId);
+    // Check if currentUser exists in the database
+    if (!currentUser) {
       return res.status(404).json({ message: 'User not found' });
     }
-    const friendsList = user.friendsList || [];
+    const friendsList = currentUser.friendsList || [];
     // Continue with the existing logic to find a non-friend user
     const allPotentialUsers = await User.findAll();
     const nonFriendUsers = allPotentialUsers.filter(u => {
       return u.userId !== userId && !friendsList.includes(u.userId.toString());
     });
-    const randomUser = nonFriendUsers[Math.floor(Math.random() * nonFriendUsers.length)];
-    if (!randomUser) {
-      res.status(404).json({ message: 'No users available.' });
-    } else {
-      res.json({ user: randomUser });
-    }
-  } catch (error) {
-    console.error("Error fetching random non-friend user:", error);
-    res.status(500).send("Error fetching random non-friend user");
-  }
-});
+  //   const randomUser = nonFriendUsers[Math.floor(Math.random() * nonFriendUsers.length)];
+  //   if (!randomUser) {
+  //     res.status(404).json({ message: 'No users available.' });
+  //   } else {
+  //     res.json({ user: randomUser });
+  //   }
+  res.json(nonFriendUsers)
+} catch (error) {
+  console.error("Error fetching random non-friend user:", error);
+  res.status(500).send("Error fetching random non-friend user");
+}});
 
 userRouter.post('/api/edituserprofile/:userId', async (req, res) => {
   const userId = req.params.userId;
