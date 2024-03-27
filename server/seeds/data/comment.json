@@ -1,20 +1,20 @@
 [
   {
-    "body": "This is a comment",
+    "body": "Am be wanting a treat.",
     "userId": 1,
     "likes": 10,
     "dislikes": 2,
     "postId": 1
   },
   {
-    "body": "This is another comment",
+    "body": "Do be wanting treat too",
     "userId": 2,
     "likes": 5,
     "dislikes": 0,
     "postId": 1
   },
   {
-    "body": "This is yet another comment",
+    "body": "You say treat?",
     "userId": 3,
     "likes": 7,
     "dislikes": 1,

@@ -3,11 +3,20 @@ import AddButton from "./buttons/AddButton";
 import EditButton from "./buttons/EditButton";
 import { CurrentUserAtom } from "../atom";
 import { useAtomValue } from "jotai";
+import { useNavigate } from "react-router-dom";
 
 
 export default function TopProfileNav({setIsAddingPost}) {
+    const navigate = useNavigate();
     const [isEditing,setIsEditing] = useState(false)
     const currentUser = useAtomValue(CurrentUserAtom);
+    
+
+    useEffect(() => {
+        if (currentUser.error && currentUser.error.status === 401) {
+            navigate('/');
+        }
+    }, [currentUser, history]);
     
     return (
         <div className="fixed flex justify-between items-center z-10 p-6 pl-12 w-full bg-base-100 shadow-md rounded-3xl">
@@ -22,17 +31,17 @@ export default function TopProfileNav({setIsAddingPost}) {
                         <>
                             <input
                                 type="text"
-                                value={currentUser.user.name}
+                                defaultValue={currentUser.user.name}
                                 onChange={(e) => setName(e.target.value)}
                             />
                             <input
                                 type="text"
-                                value={currentUser.user.breed}
+                                defaultValue={currentUser.user.breed}
                                 onChange={(e) => setBreed(e.target.value)}
                             />
                             <input
                                 type="text"
-                                value={currentUser.user.bio}
+                                defaultValue={currentUser.user.bio}
                                 onChange={(e) => setBio(e.target.value)}
                             />
                         </>

@@ -108,9 +108,9 @@ const chats = await Chat.findAll({
 async function hashPassword(user) {
 
   const rawPassword = user.password
-  console.log(rawPassword);
+  // console.log(rawPassword);
   const hashedPassword = await bcrypt.hash(rawPassword, 8);
-  console.log(hashedPassword)
+  // console.log(hashedPassword);
 
   user.password = hashedPassword
   await user.save();

@@ -1,18 +1,19 @@
-import { useAtomValue } from "jotai";
-
-import ChatPage from "./Pages/ChatPage";
-import Home from "./Pages/Home";
-import CreateUser from "./Pages/CreateUser";
-import Login from "./Pages/Login";
 import { Outlet } from "react-router";
-import Dogtcha from "./Pages/Dogtcha";
-import NotADog from "./Pages/NotADog";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import Cookies from 'js-cookie';
 
 
 
 
 function App() {
-
+    const navigate = useNavigate();
+    useEffect(() => {
+        const dogtchaPassed = Cookies.get('dogtchaPassed');
+        if (dogtchaPassed === 'false') {
+            navigate('/notADog');
+        }
+    }, [navigate]);
 
     return (
         <>

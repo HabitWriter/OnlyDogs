@@ -38,7 +38,7 @@ export default function CreateNewPost({setIsAddingPost}) {
                         <XButton clickAction={() => setIsAddingPost(false)}/>
                     </div>
                   
-                    <textarea onChange={(e) => changePost(e.target.value)} className="textarea w-full textarea-bordered resize-none" placeholder="Am be wanting to bark?"></textarea>
+                    <textarea onChange={(e) => changePost(e.target.value)} autoFocus className="textarea w-full textarea-bordered resize-none" placeholder="Am be wanting to bark?"></textarea>
                     <div className="flex justify-end w-full">
                     
                     <button onClick={newPost} className="w-24 ml-2 btn btn-primary">Post</button>
