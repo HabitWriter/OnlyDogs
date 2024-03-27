@@ -54,13 +54,30 @@ export const postArrayWriteableAtom = atom(
 );
 
 // User Atoms
+
 const userArrayAtom = atom(
   async get => {
-    const res = await axios.get("http://localhost:4090/api/user/all");
-    console.log(res.data);
-    return res.data;
+    try {
+      const res = await axios.get("http://localhost:4090/api/user/all");
+      console.log(res.data);
+      return res.data;
+    } catch (error) {
+      console.log(error);
+      return { error: error.response.status };
+    }
   }
 );
+
+
+
+// const userArrayAtom = atom(
+//   async get => {
+//     const res = await axios.get("http://localhost:4090/api/user/all");
+//     if (res.error) return res.error
+//     console.log(res.data);
+//     return res.data;
+//   }
+// );
 
 const userArrayOrderedAtom = atom(async (get) => {
   const userArray = await get(userArrayAtom);

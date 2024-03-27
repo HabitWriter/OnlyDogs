@@ -10,7 +10,7 @@ const commentRouter = Router();
 
 commentRouter.post("/like", async (req,res) => {
   const {commentId} = req.body;
-  console.log(commentId);
+  // console.log(commentId);
   const currentComment = await Comment.findByPk(commentId)
 
   // console.log(req.body);
