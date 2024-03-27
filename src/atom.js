@@ -55,11 +55,57 @@ export const postArrayWriteableAtom = atom(
 
 // User Atoms
 
+const friendArrayAtom = atom(
+  async get => {
+    const res = await axios.get("http://localhost:4090/api/friends");
+    // console.log(res.data);
+    return res.data.friendsArray;
+  }
+);
+
+// const friendArrayOrderedAtom = atom(async (get) => {
+//   const friendArray = await get(friendArrayAtom);
+//   return friendArray.sort((a, b) => new Date(b.timeCreated) - new Date(a.timeCreated));
+// });
+
+const overwrittenFriendArrayAtom = atom(null)
+
+export const friendArrayWriteableAtom = atom(
+  (get) => get(overwrittenFriendArrayAtom) ?? get(friendArrayAtom),
+  (get, set, newValue) => {
+    const nextValue =
+      typeof newValue === 'function' ? newValue(get(friendArrayWriteableAtom)) : newValue
+      // console.log(nextValue);
+      set(overwrittenFriendArrayAtom, nextValue)
+  },
+);
+const notFriendArrayAtom = atom(
+  async get => {
+    const res = await axios.get("http://localhost:4090/api/randomNotFriend");
+    // console.log(res.data);
+    return res.data;
+  }
+);
+
+
+
+const overwrittenNotFriendArrayAtom = atom(null)
+
+export const notFriendArrayWriteableAtom = atom(
+  (get) => get(overwrittenNotFriendArrayAtom) ?? get(notFriendArrayAtom),
+  (get, set, newValue) => {
+    const nextValue =
+      typeof newValue === 'function' ? newValue(get(notFriendArrayWriteableAtom)) : newValue
+      // console.log(nextValue);
+      set(overwrittenNotFriendArrayAtom, nextValue)
+  },
+);
+
 const userArrayAtom = atom(
   async get => {
     try {
-      const res = await axios.get("http://localhost:4090/api/user/all");
-      console.log(res.data);
+      const res = await axios.get("http://localhost:4090/all");
+      // console.log(res.data);
       return res.data;
     } catch (error) {
       console.log(error);
@@ -100,7 +146,7 @@ export const userArrayWriteableAtom = atom(
 export const CurrentUserAtom = atom(
   async get => {
     const res = await axios.get("http://localhost:4090/user/current");
-    // const res = 3
+    
     // console.log(res.data);
     return res.data;
   }

@@ -1,6 +1,5 @@
 [
   {
-    "userId": 1,
     "email": "user1@example.com",
     "password": "password1",
     "username": "user1",
@@ -11,7 +10,6 @@
     "bio": "I am so bored."
   },
   {
-    "userId": 2,
     "email": "user2@example.com",
     "password": "password2",
     "username": "user2",
@@ -21,14 +19,31 @@
     "breed": "breed2"
   },
   {
-    "userId": 3,
     "email": "user3@example.com",
-    "password": "password3",
+    "password": "password2",
     "username": "user3",
-    "profilePic": "profile3.jpg",
-    "name": "Chewbarka",
+    "profilePic": "profile2.jpg",
+    "name": "Mutt Damon",
+    "friendsList": [1, 3],
+    "breed": "breed2"
+  },
+  {
+    "email": "user4@example.com",
+    "password": "password4",
+    "username": "user4",
+    "profilePic": "profile4.jpg",
+    "name": "Dog",
     "friendsList": [1, 2],
-    "breed": "breed3"
+    "breed": "breed4"
+  },
+  {
+    "email": "user5@example.com",
+    "password": "password4",
+    "username": "user5",
+    "profilePic": "profile5.jpg",
+    "name": "Dog",
+    "friendsList": [1, 2],
+    "breed": "breed5"
   }
 ]
   
